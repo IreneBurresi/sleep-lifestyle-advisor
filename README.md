@@ -48,8 +48,8 @@ uv run python -m advisor.cli.generate_guidance --user me.json # your own data, f
 
 Add `--show-prompt` to see the prompt without calling the model, `--out file.json` to save
 the results, `--prompt-version v1` to run the earlier prompt (`advisor/prompts/`), `--rag` to give
-the model a search tool over two public guidelines (after `make rag`, which downloads the PDFs
-and builds an embedded Qdrant index under `artifacts/rag/`; off by default, see the notes). The prompt has three labelled sections: the cluster profile with its focus
+the model a search tool over two public guidelines (the index under `rag/index/` is committed; `make rag`
+rebuilds it from the PDFs; off by default, see the notes). The prompt has three labelled sections: the cluster profile with its focus
 areas, the person's numbers compared with their cluster and with everyone, and fixed flags.
 The flags are computed in code, printed with the guidance, and the model is told not to
 advise on them; thresholds in `docs/GUIDANCE_NOTES.md`.

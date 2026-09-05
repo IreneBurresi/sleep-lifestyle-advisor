@@ -2,7 +2,8 @@
 
     python -m advisor.cli.build_rag
 
-Writes artifacts/rag/ (a Qdrant Edge shard and chunks.json). Needs the Gemini key in .env.
+Writes rag/index/ (a Qdrant Edge shard and chunks.json), which is committed so that --rag works
+without rebuilding. Needs the Gemini key in .env.
 """
 
 import sys

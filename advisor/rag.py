@@ -1,14 +1,14 @@
-"""Reference guidelines for the guidance model: two public-domain PDFs, chunked on their
-headings, embedded with Gemini and stored in an embedded Qdrant Edge shard on disk."""
+"""Reference guidelines for the guidance model: two public-domain PDFs converted to Markdown,
+chunked on their headings, embedded with Gemini and stored in an embedded Qdrant Edge shard."""
 
-import collections
 import json
+import re
 import shutil
 import urllib.request
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-import pdfplumber
+import pymupdf4llm
 from google import genai
 from google.genai import types
 from qdrant_edge import (
@@ -37,14 +37,15 @@ SOURCES = {
     },
 }
 SOURCE_DIR = Path("data/sources")
-INDEX_DIR = Path("artifacts/rag")
+INDEX_DIR = Path("rag/index")  # committed, so that the guidance runs without rebuilding it
 EMBEDDING_MODEL = "gemini-embedding-2"
 EMBEDDING_SIZE = 768
 VECTOR = "text"
 BATCH = 20  # texts per embedding request
-HEADING_SIZE_DELTA = 3  # a line whose font is this much larger than the body text is a heading
 MAX_CHUNK_CHARS = 1200
 MIN_CHUNK_CHARS = 200
+# Sections that are not guidance: front matter, indexes, the case-story boxes set in spaced capitals.
+SKIP_HEADINGS = r"^(contents|table of contents|notes|acknowledgments|message from|glossary|appendix|references|for more|sample sleep diary|research|clinical research|learn more|nhlbi.*|.*\*\*.*|[A-Z](?: [A-Z])+(?: -)?\s*.*)$"
 
 
 @dataclass(frozen=True)
@@ -72,36 +73,35 @@ def download(directory: Path = SOURCE_DIR) -> dict[str, Path]:
 
 
 def extract_chunks(pdf_path: Path, source: str) -> list[Chunk]:
-    """One chunk per heading, split further when longer than MAX_CHUNK_CHARS."""
+    """One chunk per Markdown heading, split further when longer than MAX_CHUNK_CHARS."""
+    pages = pymupdf4llm.to_markdown(
+        str(pdf_path),
+        page_chunks=True,
+        ignore_images=True,
+        ignore_graphics=True,
+        show_progress=False,
+    )
     chunks: list[Chunk] = []
     heading, buffer, page_of_heading = "", [], 1
 
     def flush() -> None:
-        text = " ".join(buffer).strip()
-        if len(text) >= MIN_CHUNK_CHARS:
+        text = re.sub(r"\s+", " ", " ".join(buffer)).strip()
+        if len(text) >= MIN_CHUNK_CHARS and not re.match(SKIP_HEADINGS, heading, re.I):
             chunks.append(Chunk(source, heading, page_of_heading, text))
         buffer.clear()
 
-    with pdfplumber.open(pdf_path) as pdf:
-        for number, page in enumerate(pdf.pages, start=1):
-            words = page.extract_words(extra_attrs=["size"])
-            if not words:
-                continue
-            body = collections.Counter(round(w["size"]) for w in words).most_common(1)[0][0]
-            lines: dict[int, list] = collections.defaultdict(list)
-            for w in words:
-                lines[round(w["top"])].append(w)
-            for top in sorted(lines):
-                line = lines[top]
-                text = " ".join(w["text"] for w in line)
-                if all(w["size"] >= body + HEADING_SIZE_DELTA for w in line) and len(text) < 90:
-                    flush()
-                    heading, page_of_heading = text, number
-                else:
-                    buffer.append(text)
-                    if sum(len(t) for t in buffer) > MAX_CHUNK_CHARS:
+    for page in pages:
+        number = page["metadata"]["page_number"]
+        for line in page["text"].splitlines():
+            if match := re.match(r"^#{1,6}\s+(.*)$", line):
+                flush()
+                heading, page_of_heading = match.group(1).strip("* ").strip(), number
+            elif line.strip() and not re.search(r"(\. ){4,}|\.{5,}", line):  # contents lines
+                for sentence in re.split(r"(?<=[.!?])\s+", line.strip()):
+                    if sum(len(t) for t in buffer) + len(sentence) > MAX_CHUNK_CHARS:
                         flush()
                         page_of_heading = number
+                    buffer.append(sentence)
     flush()
     return chunks
 

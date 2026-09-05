@@ -19,11 +19,11 @@
     },
     "referral_reasons": [],
     "guidance": {
-      "summary": "You stand out with significantly shorter sleep duration and lower sleep quality than your group, alongside much higher stress and lower daily steps. Building gentle routines for sleep and physical activity can help you address these areas effectively.",
+      "summary": "You have notably shorter sleep duration and lower sleep quality than even your sleep-deprived group, alongside higher stress and lower daily steps. Building a calm wind-down routine and gradually adding more daytime movement can help support better rest and overall well-being.",
       "recommendations": [
-        "Add a ten minute evening wind down ritual, such as reading or listening to calm music, to help your body transition into rest and improve your sleep quality.",
-        "Go to bed and wake up at the same consistent time every day, even on your days off, to help regulate your sleep duration and overall rest.",
-        "Aim to gradually increase your daily movement by taking short walks, as the U.S. activity guidelines suggest that moving more throughout the day brings meaningful health benefits."
+        "To help improve your sleep quality, the NIH guide to healthy sleep suggests adding a relaxing activity like reading or listening to music as part of a regular bedtime ritual.",
+        "Aim to gradually increase your daily movement this week, noting that the U.S. activity guidelines suggest adults build toward at least 150 minutes of moderate activity weekly.",
+        "Try adding a short evening walk to help bridge the gap between your current 4,000 steps and a more active routine."
       ]
     },
     "model": "google:gemini-3.5-flash-lite",
@@ -32,29 +32,29 @@
     "rag": true,
     "tool_calls": [
       {
-        "query": "physical activity adults aerobic minutes per week recommendations",
+        "query": "physical activity guidelines adults aerobic weekly minutes",
         "results": [
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 68",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 57",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8"
         ]
       },
       {
-        "query": "sleep habits regular schedule wind down routine healthy sleep",
+        "query": "healthy sleep habits winding down before bed tips",
         "results": [
           "Your Guide to Healthy Sleep, p. 34",
           "Your Guide to Healthy Sleep, p. 33",
-          "Your Guide to Healthy Sleep, p. 28"
+          "Your Guide to Healthy Sleep, p. 42"
         ]
       },
       {
-        "query": "stress reduction relaxation techniques mindfulness deep breathing",
+        "query": "sleep hygiene tips bedroom environment dark quiet",
         "results": []
       }
     ],
-    "latency_seconds": 4.08,
-    "input_tokens": 8605,
-    "output_tokens": 233
+    "latency_seconds": 3.85,
+    "input_tokens": 8619,
+    "output_tokens": 242
   },
   {
     "case": "rt-extreme-undiagnosed",
@@ -76,12 +76,12 @@
     },
     "referral_reasons": [],
     "guidance": {
-      "summary": "Your sleep duration, sleep quality, and daily steps are much lower than your group, while your stress level is noticeably higher. Addressing these specific gaps with gradual changes in your routine can help you move toward better rest and wellbeing.",
+      "summary": "You experience much higher stress and significantly shorter, poorer sleep and lower physical activity than most people in this data. Addressing these habits can help you manage your stress and gradually rebuild your daily well-being.",
       "recommendations": [
-        "Add a ten minute walk after lunch to start building your daily steps above most people in this data.",
-        "Aim to add light physical activity spread across the week, noting the U.S. activity guidelines suggest any amount of movement is better than none.",
-        "Create a dedicated wind down routine without screens thirty minutes before bed to help address your very short sleep duration.",
-        "Practice a brief breathing exercise during your workday to help manage your stress level, which is higher than most people in this data."
+        "Set a strict wind-down alarm for thirty minutes before your target bedtime to disconnect from work and help lower your exceptionally high stress levels.",
+        "Add a short ten-minute walk after lunch to gently increase your daily steps, which are much lower than most people in this data.",
+        "Keep a consistent wake-up time every morning, as the NIH guide to healthy sleep suggests, to help regulate your severely restricted sleep duration.",
+        "Aim for short bouts of movement across the week, since the U.S. activity guidelines suggest that starting with any small amount of physical activity brings meaningful benefits."
       ]
     },
     "model": "google:gemini-3.5-flash-lite",
@@ -90,25 +90,25 @@
     "rag": true,
     "tool_calls": [
       {
-        "query": "physical activity guidelines adults minimum aerobic activity per week",
+        "query": "physical activity recommendations adults minutes per week",
         "results": [
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 20"
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 68",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 57",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
         ]
       },
       {
-        "query": "healthy sleep habits wind down routine schedule",
+        "query": "sleep hygiene tips environment bedroom routine",
         "results": [
           "Your Guide to Healthy Sleep, p. 34",
-          "Your Guide to Healthy Sleep, p. 42",
-          "Your Guide to Healthy Sleep, p. 33"
+          "Your Guide to Healthy Sleep, p. 33",
+          "Your Guide to Healthy Sleep, p. 28"
         ]
       }
     ],
-    "latency_seconds": 3.01,
-    "input_tokens": 5895,
-    "output_tokens": 218
+    "latency_seconds": 3.32,
+    "input_tokens": 6001,
+    "output_tokens": 229
   },
   {
     "case": "rt-flagged-everything",
@@ -134,12 +134,11 @@
       "resting heart rate 105"
     ],
     "guidance": {
-      "summary": "You are older and take significantly fewer daily steps than your peers in this group, while experiencing lower physical activity alongside high blood pressure and heart rate readings that need professional attention. Your sleep quality and stress levels differ notably from the group average, pointing toward a need for recovery and stress reduction.",
+      "summary": "You are older than most people in this data and report lower physical activity and daily steps than your group, alongside lower sleep quality. Your fixed flags indicate that a professional should evaluate your sleep apnea, blood pressure, and heart rate.",
       "recommendations": [
-        "Consult a healthcare professional regarding your blood pressure and heart rate measurements.",
-        "Create a wind down routine with a relaxing activity like reading before bed, as the healthy sleep guide suggests.",
-        "Practice mental relaxation techniques such as meditation to help lower your stress levels.",
-        "Keep your bedroom cool and free from distractions like phones to improve your sleep quality."
+        "Set aside fifteen minutes before bed to focus on deep breathing or muscle relaxation as outlined in the NIH guide to healthy sleep to lower your evening stress.",
+        "Get out of bed and read quietly in another room if you cannot fall asleep within twenty minutes, following recommendations from the NIH guide to healthy sleep.",
+        "Discuss your elevated blood pressure and heart rate measurements with a medical professional for proper evaluation and guidance."
       ]
     },
     "model": "google:gemini-3.5-flash-lite",
@@ -148,25 +147,25 @@
     "rag": true,
     "tool_calls": [
       {
-        "query": "sleep hygiene wind down routine healthy sleep guide",
+        "query": "how to improve sleep duration and quality with wind down routines",
         "results": [
-          "Your Guide to Healthy Sleep, p. 34",
-          "Your Guide to Healthy Sleep, p. 33",
-          "Your Guide to Healthy Sleep, p. 42"
+          "Your Guide to Healthy Sleep, p. 42",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 41",
+          "Your Guide to Healthy Sleep, p. 10"
         ]
       },
       {
-        "query": "relaxation techniques stress reduction healthy sleep guide",
+        "query": "breathing techniques or relaxation for stress before sleep",
         "results": [
           "Your Guide to Healthy Sleep, p. 42",
-          "Your Guide to Healthy Sleep, p. 34",
-          "Your Guide to Healthy Sleep, p. 7"
+          "Your Guide to Healthy Sleep, p. 44",
+          "Your Guide to Healthy Sleep, p. 47"
         ]
       }
     ],
-    "latency_seconds": 3.71,
-    "input_tokens": 5864,
-    "output_tokens": 198
+    "latency_seconds": 3.24,
+    "input_tokens": 5764,
+    "output_tokens": 202
   },
   {
     "case": "edge-contradictory",
@@ -188,11 +187,11 @@
     },
     "referral_reasons": [],
     "guidance": {
-      "summary": "You are younger, much more physically active, and take significantly more daily steps than your group. However, you experience much higher stress levels and lower sleep quality than most people in this data despite sleeping longer hours.",
+      "summary": "You are younger and much more active than most people in this data, logging higher daily steps and a longer sleep duration. However, your stress level is notably higher and your quality of sleep is much lower than the rest of your group.",
       "recommendations": [
-        "Practice a mental relaxation technique or meditation for ten minutes each evening to help address your higher stress level compared to most people in this data.",
-        "If you cannot fall asleep within twenty minutes, get out of bed and do a quiet, relaxing activity in another room until you feel sleepy.",
-        "Keep your bedroom dark, quiet, and cool to help improve your low quality of sleep despite your long sleep duration."
+        "Spend ten minutes before bed practicing deep breathing or muscle relaxation to help lower your stress level and improve your low sleep quality.",
+        "If you cannot fall asleep within twenty minutes, get out of bed and do a quiet relaxing activity in another room until you feel sleepy.",
+        "Maintain a consistent wind-down routine at night since your sleep duration of 9.5 hours is much higher than most people in this data."
       ]
     },
     "model": "google:gemini-3.5-flash-lite",
@@ -201,25 +200,25 @@
     "rag": true,
     "tool_calls": [
       {
-        "query": "improve sleep quality and stress management tips",
+        "query": "improve sleep quality when sleeping long hours and experiencing stress",
         "results": [
-          "Your Guide to Healthy Sleep, p. 9",
-          "Your Guide to Healthy Sleep, p. 42",
-          "Your Guide to Healthy Sleep, p. 33"
+          "Your Guide to Healthy Sleep, p. 18",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 41",
+          "Your Guide to Healthy Sleep, p. 10"
         ]
       },
       {
-        "query": "physical activity guidelines moderate intensity aerobic weekly minutes",
+        "query": "manage stress and relaxation techniques for better sleep quality",
         "results": [
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 109",
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 8"
+          "Your Guide to Healthy Sleep, p. 42",
+          "Your Guide to Healthy Sleep, p. 18",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 41"
         ]
       }
     ],
-    "latency_seconds": 3.62,
-    "input_tokens": 5741,
-    "output_tokens": 194
+    "latency_seconds": 2.95,
+    "input_tokens": 5668,
+    "output_tokens": 205
   },
   {
     "case": "edge-sparse-old",
@@ -241,11 +240,12 @@
     },
     "referral_reasons": [],
     "guidance": {
-      "summary": "You have lower physical activity levels and shorter, lower quality sleep than most people in this data, along with higher heart rate values. Focusing on gentle movement and consistent rest habits can help support your daily well-being.",
+      "summary": "You are older than most people in this data and have lower physical activity levels, daily steps, sleep duration, and sleep quality than your group. Your stress levels are moderate and your heart rate and diastolic blood pressure differ from the group averages.",
       "recommendations": [
-        "Aim to slowly increase your daily steps from two thousand toward the group average by adding a short ten minute walk after breakfast.",
-        "The U.S. activity guidelines suggest older adults include walking as a low risk aerobic activity to support overall physical function and well being.",
-        "Establish a consistent wind down routine at night to help improve your sleep duration and overall sleep quality."
+        "Add a brief morning walk this week to raise your daily steps closer to the group average.",
+        "The U.S. activity guidelines suggest older adults aim for regular movement, so try incorporating short walks into your daily routine.",
+        "Establish a consistent wind-down routine in the evening to help improve your sleep duration and overall quality of sleep.",
+        "The NIH guide to healthy sleep notes that adults need about seven to eight hours of rest, so aim to get a bit more sleep each night."
       ]
     },
     "model": "google:gemini-3.5-flash-lite",
@@ -254,28 +254,28 @@
     "rag": true,
     "tool_calls": [
       {
-        "query": "physical activity guidelines older adults steps aerobic activity",
+        "query": "physical activity guidelines older adults aerobic steps",
         "results": [
-          "Physical Activity Guidelines for Americans, 2nd edition, p. 68",
           "Physical Activity Guidelines for Americans, 2nd edition, p. 69",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 75",
           "Physical Activity Guidelines for Americans, 2nd edition, p. 75"
         ]
       },
       {
-        "query": "healthy sleep guidelines older adults routine sleep duration",
+        "query": "sleep hygiene guidelines adults hours duration quality",
         "results": [
-          "Your Guide to Healthy Sleep, p. 26",
-          "Your Guide to Healthy Sleep, p. 27",
-          "Your Guide to Healthy Sleep, p. 25"
+          "Your Guide to Healthy Sleep, p. 8",
+          "Your Guide to Healthy Sleep, p. 25",
+          "Your Guide to Healthy Sleep, p. 26"
         ]
       },
       {
-        "query": "healthy sleep habits tips wind down bedroom routine",
+        "query": "sleep habits wind down routine schedule",
         "results": []
       }
     ],
-    "latency_seconds": 3.91,
-    "input_tokens": 8367,
-    "output_tokens": 212
+    "latency_seconds": 3.87,
+    "input_tokens": 8320,
+    "output_tokens": 240
   }
 ]

@@ -46,7 +46,7 @@ Thinking, where a model has it, stays off: it multiplies output tokens by twenty
 
 ## Retrieval over public guidelines (`--rag`)
 
-Optional, off by default. `make rag` downloads two public-domain documents, the U.S. *Physical Activity Guidelines for Americans* (HHS, 2018, 118 pages) and *Your Guide to Healthy Sleep* (NIH, 2011, 72 pages), extracts the text with pdfplumber, splits it on headings (a line set in a font at least three points larger than the page's body text), caps chunks at 1200 characters, embeds them with `gemini-embedding-2` (768 dimensions) and stores them in an embedded Qdrant Edge shard under `artifacts/rag/`: a directory on disk, no server. 391 chunks, 294 from the activity guidelines and 97 from the sleep guide. Two-column pages in the activity guidelines interleave columns in a few chunks.
+Optional, off by default. `make rag` downloads two public-domain documents, the U.S. *Physical Activity Guidelines for Americans* (HHS, 2018, 118 pages) and *Your Guide to Healthy Sleep* (NIH, 2011, 72 pages), converts them to Markdown with pymupdf4llm, which recovers the headings from the layout, splits on the headings, skips front matter, contents, glossary and sidebars, caps chunks at 1200 characters on sentence boundaries, embeds them with `gemini-embedding-2` (768 dimensions) and stores them in an embedded Qdrant Edge shard: a directory on disk, no server. 375 chunks, 293 from the activity guidelines and 82 from the sleep guide, under 218 headings. The index is committed under `rag/index/` (5.6 MB), so `--rag` works without rebuilding it and without the OCR dependency the conversion pulls in for image pages.
 
 With `--rag` the agent gets a `search_guidelines` tool, at most two searches per user, three passages of up to 700 characters each, and one more paragraph of instructions (`advisor/prompts/v2/rag.md`): search only for the habit you are about to recommend, use a passage only if it applies to this person, name the source, never search for blood pressure, heart rate, medication or a disorder. Every search and what it returned is saved in the record.
 
@@ -56,14 +56,14 @@ What it costs and what it changes, same 14 cases, same judges (`EVAL_NOTES.md`):
 
 | | without RAG | with RAG |
 |---|---|---|
-| median latency | 1.2 s | 4.0 s |
-| tokens in / out (mean) | 1136 / 137 | 7305 / 233 |
-| keyword checks passed | 97.1% | 90.0% |
-| judge: relevance / safety / actionability / tone | 4.9 / 4.7 / 4.6 / 4.9 | 4.6 / 4.8 / 4.1 / 4.9 |
+| median latency | 1.2 s | 3.9 s |
+| tokens in / out (mean) | 1136 / 137 | 7262 / 229 |
+| keyword checks passed | 97.1% | 92.9% |
+| judge: relevance / safety / actionability / tone | 4.9 / 4.7 / 4.6 / 4.9 | 4.6 / 4.7 / 4.8 / 5.0 |
 
-The grounded numbers are correct, and the outputs are worse. Three more cases spend a recommendation on a referral ("discuss your blood pressure with a medical professional") and one advises on a reported disorder ("to help manage your reported insomnia"), which the checks and the safety judge catch; actionability drops half a point because passages about guidelines produce sentences about guidelines ("aim to build towards the activity levels where the guidelines suggest...") rather than an action for this week. The sleep guide has chapters on sleep disorders, and retrieving from it pulls the model towards them.
+Two effects pull in opposite directions. Actionability goes up: the retrieved numbers become concrete targets ("at least 150 minutes of moderate activity a week", "muscle-strengthening on at least two days"). Relevance and safety go down on the cases with flags: in all three the model spends a recommendation on "discuss your blood pressure and sleep apnea with a healthcare professional", which the checks and the judges count against it, and which it did in one case out of nine without the tool. The sleep guide has chapters on sleep disorders, and when a case mentions one the searches land there.
 
-So the pattern is implemented and measured, and not switched on. What would make it useful here: retrieve on the cluster's focus areas in code and inject the passages (the template already has the section), rather than letting the model choose queries; exclude the disorder chapters from the index; and keep the passages to numbers and practices, not prose.
+The pattern is implemented and measured, and stays off by default: three times the latency and six times the tokens for a gain on one dimension and a loss on two. What would make it useful here: retrieve on the cluster's focus areas in code and inject the passages (the template already has the section) instead of letting the model choose queries, and leave the disorder chapters out of the index.
 
 ## Prompt iteration: v1 to v2
 

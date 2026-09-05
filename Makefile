@@ -15,7 +15,7 @@ $(DATASET):
 
 fit: $(MODEL)
 
-# reference guidelines index for --rag (downloads two public-domain PDFs, embeds with Gemini)
+# rebuild the reference guidelines index in rag/index/ (downloads two public-domain PDFs, embeds with Gemini)
 rag:
 	uv run python -m advisor.cli.build_rag
 

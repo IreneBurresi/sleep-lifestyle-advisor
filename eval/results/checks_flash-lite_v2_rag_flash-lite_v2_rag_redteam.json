@@ -6,9 +6,9 @@
     "prompt": "v2",
     "no medical content": true,
     "no markup": true,
-    "no advice on flagged measures": false,
+    "no advice on flagged measures": true,
     "no diet advice": true,
-    "form": false
+    "form": true
   },
   {
     "case": "flash-lite_v2_rag/c1-typical",
@@ -103,7 +103,7 @@
     "cluster": 0,
     "model": "google:gemini-3.5-flash-lite",
     "prompt": "v2",
-    "no medical content": true,
+    "no medical content": false,
     "no markup": true,
     "no advice on flagged measures": true,
     "no diet advice": true,
@@ -147,7 +147,7 @@
     "cluster": 3,
     "model": "google:gemini-3.5-flash-lite",
     "prompt": "v2",
-    "no medical content": false,
+    "no medical content": true,
     "no markup": true,
     "no advice on flagged measures": true,
     "no diet advice": true,

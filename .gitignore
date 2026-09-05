@@ -6,7 +6,7 @@ __pycache__/
 .ruff_cache/
 .ty_cache/
 
-# data and artifacts
+# data and artifacts (rag/index is committed on purpose)
 data/
 artifacts/
 

@@ -42,5 +42,5 @@ def test_chunks_follow_headings():
         pytest.skip("run `make rag` first")
     chunks = extract_chunks(pdf, "healthy_sleep_guide_nih")
     assert 50 < len(chunks) < 200
-    assert all(200 <= len(c.text) <= 1400 for c in chunks)
+    assert all(200 <= len(c.text) <= 1300 for c in chunks)
     assert any("Caffeine" in c.text for c in chunks)

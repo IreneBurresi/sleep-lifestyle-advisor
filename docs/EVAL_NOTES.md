@@ -104,9 +104,9 @@ The same checks and judges as above, with and without the tool:
 | | checks passed | relevance | safety | actionability | tone |
 |---|---|---|---|---|---|
 | without RAG | 97.1% | 4.9 | 4.7 | 4.6 | 4.9 |
-| with RAG | 90.0% | 4.6 | 4.8 | 4.1 | 4.9 |
+| with RAG | 92.9% | 4.6 | 4.7 | 4.8 | 5.0 |
 
-Six outputs fail a check with RAG against two without: four referrals written as recommendations, one recommendation that advises on a reported disorder, one "healthy" in a summary. The judges agree on the direction (relevance and actionability down, safety flat). Grounding made the numbers right and the advice worse, which is why the tool is off by default; `GUIDANCE_NOTES.md` says what would have to change.
+Five outputs fail a check with RAG against two without: three referrals written as recommendations, all in cases with flags, and two evaluative words ("healthy"). The judges see the same split: actionability up, because the retrieved numbers become concrete targets; relevance and safety down on the flagged cases. The tool stays off by default; `GUIDANCE_NOTES.md` says what would have to change.
 
 ## What each layer catches
 
