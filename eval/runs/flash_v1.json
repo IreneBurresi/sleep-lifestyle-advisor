@@ -1,0 +1,322 @@
+[
+  {
+    "case": "c0-typical",
+    "cluster": 0,
+    "user": {
+      "age": 42,
+      "sleep_duration": 6.5,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 45,
+      "daily_steps": 6000,
+      "stress_level": 7,
+      "heart_rate": 72,
+      "systolic": 130,
+      "diastolic": 85,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Salesperson"
+    },
+    "referral_reasons": [
+      "reports insomnia"
+    ],
+    "guidance": {
+      "summary": "While you sleep slightly longer and move a bit more than others in your late-thirties group, your sleep quality is lower and your stress is higher than most people in this data. Because you reported insomnia, you should have a healthcare professional look into your sleep patterns. Your focus should be on manageable steps to lower your daily stress and gradually build up your physical activity.",
+      "recommendations": [
+        "Schedule a daily fifteen-minute walk during your sales shift to help bring your step count closer to the average.",
+        "Set a wind-down alarm one hour before bed to turn off screens and help ease your high stress levels.",
+        "Keep your bedroom completely dark and cool to help improve your sleep quality, which is currently lower than most people in this data."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 1.79,
+    "input_tokens": 888,
+    "output_tokens": 170
+  },
+  {
+    "case": "c1-typical",
+    "cluster": 1,
+    "user": {
+      "age": 53,
+      "sleep_duration": 8.4,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 30,
+      "daily_steps": 5000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 125,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You enjoy exceptionally high sleep quality and very low stress levels compared to most people in this data, matching the strong baseline of your peer group. However, your physical activity and daily steps are lower than both your group average and the wider group, making movement your primary area for improvement.",
+      "recommendations": [
+        "Add a fifteen-minute brisk walk to your daily lunch break to gradually increase your step count.",
+        "Incorporate simple bodyweight exercises like squats or wall push-ups twice a week while watching television.",
+        "Protect your excellent sleep quality by keeping your bedroom cool, dark, and free of screens in the evening."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 1.7,
+    "input_tokens": 870,
+    "output_tokens": 143
+  },
+  {
+    "case": "c2-typical",
+    "cluster": 2,
+    "user": {
+      "age": 35,
+      "sleep_duration": 7.5,
+      "quality_of_sleep": 8,
+      "physical_activity_level": 60,
+      "daily_steps": 8000,
+      "stress_level": 5,
+      "heart_rate": 70,
+      "systolic": 120,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Software Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You are in your mid-thirties and show strong overall health markers, with sleep quality and daily steps that are higher than most people in this data. While your physical activity level is slightly lower than your highly active group peers, your blood pressure and resting heart rate remain in a very healthy position.",
+      "recommendations": [
+        "Add a ten-minute brisk walk to your lunch break to help bring your physical activity level closer to your group's active standard.",
+        "Keep your consistent bedtime routine to protect your excellent sleep quality and duration.",
+        "Take a five-minute screen break every two hours at work to help keep your daily stress levels low."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 1.66,
+    "input_tokens": 874,
+    "output_tokens": 149
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "As a nurse, you maintain excellent sleep quality and low stress levels, even outperforming your peer group in these areas. However, your blood pressure is higher than most people in this data, and you should have a healthcare professional evaluate both your blood pressure of 140/95 and your reported sleep apnea.",
+      "recommendations": [
+        "Add a brisk fifteen-minute walk to your daily routine to help gently lower your blood pressure.",
+        "Incorporate five minutes of gentle stretching or mobility exercises before your nursing shifts to build on your active habits.",
+        "Park your car slightly further from work or take the stairs once a day to gradually increase your daily steps."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 1.64,
+    "input_tokens": 945,
+    "output_tokens": 152
+  },
+  {
+    "case": "c4-typical",
+    "cluster": 4,
+    "user": {
+      "age": 50,
+      "sleep_duration": 6.1,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 8,
+      "heart_rate": 75,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "While you are highly active with 10,000 daily steps, your sleep duration of 6.1 hours is much lower and your stress level of 8 is higher than most people in this data. Your blood pressure of 140/95 and reported insomnia should be evaluated by a healthcare professional. Your focus should be on recovery and stress reduction rather than adding more physical activity.",
+      "recommendations": [
+        "Swap one of your high-intensity workouts this week for a restorative practice like gentle yoga or a slow walk to help your body recover.",
+        "Set aside ten minutes before bed to write down any lingering thoughts or tasks to help clear your mind for sleep.",
+        "Practice five minutes of slow, deep breathing during your breaks at work to help manage your daily stress levels."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 1.84,
+    "input_tokens": 898,
+    "output_tokens": 179
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "At twenty-eight, you are younger than most people in this data, but you experience significantly lower sleep quality, higher stress, and lower physical activity than both your peer group and the wider average. Because you have reported sleep apnea and your blood pressure is 140/90, you should have a healthcare professional evaluate these specific concerns.",
+      "recommendations": [
+        "Walk for ten minutes during your lunch break to help build your daily step count.",
+        "Set a wind-down alarm one hour before bed to turn off screens and help improve your sleep quality.",
+        "Practice five minutes of slow, deep breathing at your desk when you feel your stress levels rising during the workday."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 1.43,
+    "input_tokens": 901,
+    "output_tokens": 156
+  },
+  {
+    "case": "c0-divergent-2",
+    "cluster": 0,
+    "user": {
+      "age": 29,
+      "sleep_duration": 6.3,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 40,
+      "daily_steps": 3500,
+      "stress_level": 7,
+      "heart_rate": 82,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Teacher"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "As a 29-year-old teacher, you sleep about 6.3 hours a night with high stress levels, matching your group's profile, but your daily steps are much lower and your resting heart rate is notably higher than most people in this data. Because you report insomnia and your blood pressure is 140/90, you should have a healthcare professional look at these specific measurements.",
+      "recommendations": [
+        "Walk for ten minutes during your lunch break to help build up your daily steps.",
+        "Set a quiet wind-down routine thirty minutes before bed to help manage your high stress levels.",
+        "Try a simple five-minute breathing exercise at the end of your school day to transition from work to rest."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 67.49,
+    "input_tokens": 898,
+    "output_tokens": 168
+  },
+  {
+    "case": "c2-boundary-1",
+    "cluster": 2,
+    "user": {
+      "age": 43,
+      "sleep_duration": 6.9,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 47,
+      "daily_steps": 6800,
+      "stress_level": 7,
+      "heart_rate": 69,
+      "systolic": 117,
+      "diastolic": 76,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "While your group typically enjoys high sleep quality and low stress, your own numbers show significantly higher stress and poorer sleep than both your peers and the wider dataset. Your physical activity is also lower than your group average, though your blood pressure remains excellent. Your primary opportunity lies in managing daily stress to help restore your sleep.",
+      "recommendations": [
+        "Set a recurring phone alarm to prompt you to wind down and turn off screens 45 minutes before your target bedtime.",
+        "Take a ten-minute walk outside during your lunch break to help lower your daytime stress and add easy steps to your afternoon.",
+        "Incorporate one short, twenty-minute session of moderate exercise, like brisk walking, into your weekly routine to rebuild your activity."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 3.33,
+    "input_tokens": 2091,
+    "output_tokens": 347
+  },
+  {
+    "case": "c1-boundary-2",
+    "cluster": 1,
+    "user": {
+      "age": 56,
+      "sleep_duration": 8.2,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 118,
+      "diastolic": 75,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Doctor"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You enjoy high sleep quality, low stress, and an active lifestyle that sets you far ahead of your peers in this data. Your steps and activity levels are remarkably high, supporting your excellent heart rate and blood pressure. Your main opportunity is to sustain these outstanding habits as you age.",
+      "recommendations": [
+        "Add a brisk fifteen-minute walk to your daily routine to help maintain your excellent cardiovascular health as you age.",
+        "Incorporate two brief strength-training sessions into your week to support bone density and muscle mass.",
+        "Protect your excellent sleep quality by keeping a consistent wind-down routine, even on busy work nights."
+      ]
+    },
+    "model": "google:gemini-3.5-flash",
+    "prompt_version": "v1",
+    "reasoning": false,
+    "latency_seconds": 3.6,
+    "input_tokens": 2071,
+    "output_tokens": 308
+  }
+]

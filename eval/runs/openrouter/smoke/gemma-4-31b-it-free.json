@@ -1,0 +1,39 @@
+[
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You report sleep apnea and have high blood pressure readings. Your sleep quality and duration are higher than most people in your group.",
+      "recommendations": [
+        "Increase your daily step count by adding a short walk during your work breaks.",
+        "Maintain your high level of physical activity to support your weight management.",
+        "Keep your current sleep routine since your sleep duration and quality are higher than your group."
+      ]
+    },
+    "model": "openrouter:google/gemma-4-31b-it:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 5.29,
+    "input_tokens": 1191,
+    "output_tokens": 97
+  }
+]

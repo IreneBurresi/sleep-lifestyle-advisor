@@ -1,0 +1,323 @@
+[
+  {
+    "case": "c0-typical",
+    "cluster": 0,
+    "user": {
+      "age": 42,
+      "sleep_duration": 6.5,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 45,
+      "daily_steps": 6000,
+      "stress_level": 7,
+      "heart_rate": 72,
+      "systolic": 130,
+      "diastolic": 85,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Salesperson"
+    },
+    "referral_reasons": [
+      "reports insomnia"
+    ],
+    "guidance": {
+      "summary": "You are typical of your group: your sleep, stress, and activity numbers sit close to the averages for people in your cluster. You report insomnia, which a professional should review.",
+      "recommendations": [
+        "Go to bed and wake up at the same times each day, even on weekends, to help regulate your sleep.",
+        "Take a five-minute walk after lunch to add movement without cutting into work time.",
+        "Practice a simple breathing exercise for two minutes before bed to lower stress and ease into sleep."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 9.86,
+    "input_tokens": 1355,
+    "output_tokens": 162
+  },
+  {
+    "case": "c1-typical",
+    "cluster": 1,
+    "user": {
+      "age": 53,
+      "sleep_duration": 8.4,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 30,
+      "daily_steps": 5000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 125,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You match the group average on all measured habits: good sleep duration and quality, low stress, but physical activity and daily steps are below average. Your age, sleep, stress, and cardiovascular numbers are all in line with others in your early-fifties, normal-BMI cluster.",
+      "recommendations": [
+        "Add a 10-minute brisk walk after lunch three days this week to raise your daily step count.",
+        "Do two 15-minute body-weight strength sessions at home this week, such as squats and wall push-ups.",
+        "Replace one sitting meeting each week with a walking meeting or phone call while you stroll."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 7.47,
+    "input_tokens": 1338,
+    "output_tokens": 193
+  },
+  {
+    "case": "c2-typical",
+    "cluster": 2,
+    "user": {
+      "age": 35,
+      "sleep_duration": 7.5,
+      "quality_of_sleep": 8,
+      "physical_activity_level": 60,
+      "daily_steps": 8000,
+      "stress_level": 5,
+      "heart_rate": 70,
+      "systolic": 120,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Software Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You are slightly below your group average in physical activity level, while your sleep, stress and other measures are close to the group average. Your blood pressure is not flagged for concern.",
+      "recommendations": [
+        "Add a 15-minute brisk walk during your lunch break three times this week to boost activity.",
+        "Keep your current sleep routine of 7.5 hours and quality rating around 8.",
+        "Maintain your stress level by continuing whatever practices keep it around 5 out of 10."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 3.63,
+    "input_tokens": 1340,
+    "output_tokens": 162
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You are older than most in your group and get more sleep and better sleep quality, while staying more active. Your blood pressure is elevated despite these good habits, and you have reported sleep apnea, which a professional should evaluate.",
+      "recommendations": [
+        "Keep your current sleep routine of about 8 hours per night, as it supports your low stress and good rest.",
+        "Add a 10-minute brisk walk after lunch on weekdays to build on your already active lifestyle.",
+        "Try a calming bedtime habit like reading or light stretching to maintain your high sleep quality."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 2.19,
+    "input_tokens": 1432,
+    "output_tokens": 179
+  },
+  {
+    "case": "c4-typical",
+    "cluster": 4,
+    "user": {
+      "age": 50,
+      "sleep_duration": 6.1,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 8,
+      "heart_rate": 75,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You match the group average on all measured habits: short sleep, high stress, and very high activity. Your blood pressure is elevated and you report insomnia, so a professional should review those.",
+      "recommendations": [
+        "Go to bed 30 minutes earlier tonight to protect your recovery time.",
+        "Take three slow breaths before each patient hand-off to lower momentary stress.",
+        "Replace one intense workout this week with gentle stretching or yoga to aid recovery."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 1.78,
+    "input_tokens": 1364,
+    "output_tokens": 149
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are younger than most in your group but sleep poorly, feel more stressed, and move far less than others your age. Your blood pressure is elevated and you report sleep apnea, which a clinician should review.",
+      "recommendations": [
+        "Go to bed 30 minutes earlier tonight to aim for at least 6.5 hours of sleep.",
+        "Take a five-minute walk after each meal to add about 1,500 steps daily.",
+        "Practice four-count breathing for two minutes before bed to lower stress."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 2.52,
+    "input_tokens": 1417,
+    "output_tokens": 165
+  },
+  {
+    "case": "c0-divergent-2",
+    "cluster": 0,
+    "user": {
+      "age": 29,
+      "sleep_duration": 6.3,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 40,
+      "daily_steps": 3500,
+      "stress_level": 7,
+      "heart_rate": 82,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Teacher"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are younger than others in your group and get the same short sleep and poor quality they do, but your stress is slightly lower. Your daily steps are much lower than your peers, and your heart rate and blood pressure are higher. A professional should look at your insomnia and blood pressure reading.",
+      "recommendations": [
+        "Add a 10-minute walk after lunch each workday to increase your daily steps.",
+        "Set a consistent bedtime alarm to help you get at least 6.5 hours of sleep each night.",
+        "Practice five minutes of deep breathing before bedtime to lower your heart rate and improve sleep quality."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 4.92,
+    "input_tokens": 1390,
+    "output_tokens": 185
+  },
+  {
+    "case": "c2-boundary-1",
+    "cluster": 2,
+    "user": {
+      "age": 43,
+      "sleep_duration": 6.9,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 47,
+      "daily_steps": 6800,
+      "stress_level": 7,
+      "heart_rate": 69,
+      "systolic": 117,
+      "diastolic": 76,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You are slightly older than others in your group but otherwise similar in most health markers. Your sleep duration and quality are lower than your group\u2019s average, while your stress level and physical activity are notably higher and lower, respectively.",
+      "recommendations": [
+        "Aim to get 7.5 hours of sleep each night by setting a consistent bedtime and wake-up time.",
+        "Improve your sleep quality by avoiding screens for at least 30 minutes before bed and keeping your bedroom cool and dark.",
+        "Incorporate a 20-minute walk or light activity into your daily routine to increase your physical activity level.",
+        "Practice a 5-minute breathing exercise or mindfulness technique each evening to help reduce your stress level."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 2.87,
+    "input_tokens": 1382,
+    "output_tokens": 208
+  },
+  {
+    "case": "c1-boundary-2",
+    "cluster": 1,
+    "user": {
+      "age": 56,
+      "sleep_duration": 8.2,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 118,
+      "diastolic": 75,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Doctor"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You are a 56-year-old female doctor with normal BMI and no reported sleep disorder. Your sleep duration and quality are similar to your group\u2019s excellent levels, and your stress is low. You are much more active than others in your group, with far higher physical activity and daily steps, and your blood pressure is lower than average.",
+      "recommendations": [
+        "Keep your current sleep routine by going to bed and waking up at the same times each day to maintain your high sleep quality.",
+        "Continue your regular physical activity, aiming for at least 30 minutes of moderate movement most days to sustain your fitness.",
+        "Add two short strength-building sessions each week, such as bodyweight exercises or light weights, to support muscle health as you age."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 2.14,
+    "input_tokens": 1359,
+    "output_tokens": 207
+  }
+]

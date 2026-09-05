@@ -1,0 +1,112 @@
+[
+  {
+    "case": "c1-typical",
+    "cluster": 1,
+    "user": {
+      "age": 53,
+      "sleep_duration": 8.4,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 30,
+      "daily_steps": 5000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 125,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You are typical of your group: you sleep well, feel little stress, and are a bit less active than others in your early\u2011fifties, normal\u2011BMI cluster. Your sleep duration and quality are about average for the group, while your physical activity level and daily steps are slightly below the group average.",
+      "recommendations": [
+        "Add a 15\u2011minute brisk walk after lunch three times this week to raise your daily steps.",
+        "Do two short body\u2011weight sessions (like squats and push\u2011ups) at home on non\u2011consecutive days to boost activity.",
+        "Keep your current bedtime routine unchanged to preserve your high sleep quality.",
+        "Practice a five\u2011minute breathing exercise each evening to maintain low stress."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": true,
+    "latency_seconds": 6.09,
+    "input_tokens": 1338,
+    "output_tokens": 864
+  },
+  {
+    "case": "c4-typical",
+    "cluster": 4,
+    "user": {
+      "age": 50,
+      "sleep_duration": 6.1,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 8,
+      "heart_rate": 75,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You are typical of your group: average sleep, stress, activity, and vitals for cluster 4. You report insomnia and have elevated blood pressure, which a professional should review.",
+      "recommendations": [
+        "Set a consistent bedtime routine aiming for 7 hours of sleep, such as turning off screens 30 minutes before bed and keeping the room dark.",
+        "Practice a 5\u2011minute deep\u2011breathing or mindfulness exercise each morning to help lower stress levels.",
+        "Incorporate a short recovery session after work, like gentle stretching or yoga for 10 minutes, to aid recovery without adding more exercise."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": true,
+    "latency_seconds": 29.46,
+    "input_tokens": 4792,
+    "output_tokens": 1632
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are younger than most in your cluster, yet you sleep about half an hour less and rate your sleep quality much lower than your peers, while reporting higher stress and far fewer daily steps. You also report sleep apnea and have elevated blood pressure, which a clinician should review.",
+      "recommendations": [
+        "Set a consistent bedtime to add about 30 minutes of sleep each night, avoiding screens for 30 minutes before bed.",
+        "When you feel stressed, pause for a 5\u2011minute deep\u2011breathing or mindfulness exercise to help lower your stress level.",
+        "Increase your daily steps by taking a 10\u2011minute walk after work or during lunch, aiming for at least 4,000 steps per day.",
+        "Add short activity bursts, like stretching or body\u2011weight exercises, for 5 minutes every hour while you are working."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": true,
+    "latency_seconds": 20.89,
+    "input_tokens": 3117,
+    "output_tokens": 2245
+  }
+]

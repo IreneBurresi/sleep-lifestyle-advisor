@@ -1,0 +1,328 @@
+[
+  {
+    "case": "c0-typical",
+    "cluster": 0,
+    "user": {
+      "age": 42,
+      "sleep_duration": 6.5,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 45,
+      "daily_steps": 6000,
+      "stress_level": 7,
+      "heart_rate": 72,
+      "systolic": 130,
+      "diastolic": 85,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Salesperson"
+    },
+    "referral_reasons": [
+      "reports insomnia"
+    ],
+    "guidance": {
+      "summary": "You sit a little ahead of your group on sleep, stress and activity, but you are still below the overall average in this data on sleep length, sleep quality, activity and steps. Your stress is higher than most people here, and your sleep quality is lower than most, which often go together. Small, steady habit changes in activity and evening routine tend to help people in your situation.",
+      "recommendations": [
+        "Add a 20 to 30 minute walk on most days, since your activity and step count are below the overall average in this data.",
+        "Pick one short wind-down ritual in the evening, such as dimming lights and stretching for 10 minutes, to help your body shift out of work mode before bed.",
+        "Keep the same bedtime and wake time every day, including days off, so your sleep timing stays steady.",
+        "Break your sitting time at work with a two minute walk every hour, since your job is mostly desk based and your daily steps are below average."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 11.2,
+    "input_tokens": 2949,
+    "output_tokens": 1340
+  },
+  {
+    "case": "c1-typical",
+    "cluster": 1,
+    "user": {
+      "age": 53,
+      "sleep_duration": 8.4,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 30,
+      "daily_steps": 5000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 125,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You match your group almost exactly: long, high-quality sleep and low stress are your strengths, sitting well above most people in this data. Your activity score and daily steps are a touch below your group's average, and your group is already less active than the wider data, so movement is the area with the most room to grow.",
+      "recommendations": [
+        "Add a 15-minute walk after lunch or dinner most days to lift your daily steps from 5,000 toward 7,000 to 8,000.",
+        "Layer one small movement habit into your workweek, like taking the stairs or a two-minute walk break every hour, since your activity score sits slightly below your group's.",
+        "Keep your sleep window and wind-down routine steady, since good sleep is one of your strongest habits and tends to slip with age.",
+        "Protect your low-stress pattern by keeping one regular block in your week that is fully off work, so stress does not quietly creep up."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 10.43,
+    "input_tokens": 1222,
+    "output_tokens": 1097
+  },
+  {
+    "case": "c2-typical",
+    "cluster": 2,
+    "user": {
+      "age": 35,
+      "sleep_duration": 7.5,
+      "quality_of_sleep": 8,
+      "physical_activity_level": 60,
+      "daily_steps": 8000,
+      "stress_level": 5,
+      "heart_rate": 70,
+      "systolic": 120,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Software Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You are in a healthy spot overall, with sleep duration, sleep quality, and blood pressure all better than most people in this data. Your daily steps are solid, but your overall activity intensity sits a bit below others in your group, which is the main area worth a small tweak. Stress is roughly average for your group, so a light touch there is enough.",
+      "recommendations": [
+        "Add one short higher-intensity session this week, like a 20-minute brisk walk, jog, or cycle, since your step count is good but your overall activity intensity runs below your group's average.",
+        "Keep a consistent wind-down routine before bed, such as dimming screens 30 minutes before sleep, to protect the sleep quality you already have.",
+        "Take a 5-minute breathing or stretch break once during your workday to gently nudge your stress level down, since it sits slightly above your group's average."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 6.78,
+    "input_tokens": 1226,
+    "output_tokens": 872
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You sleep longer and feel less stress than most people in this data, and you move more than your group, but you carry extra weight and your blood pressure is high. Both the sleep apnea you reported and the 140/95 reading are things a clinician should look at, so the tips below stay on everyday habits around weight.",
+      "recommendations": [
+        "Add two short strength sessions a week, such as bodyweight squats or resistance bands, since keeping muscle helps with weight as you get older.",
+        "Swap one carb-heavy meal a day for a plate built around vegetables and a protein source like eggs, fish, beans or chicken.",
+        "Keep a simple food and step log for two weeks so you can spot the meals or days that push your intake up without you noticing."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 7.56,
+    "input_tokens": 1279,
+    "output_tokens": 963
+  },
+  {
+    "case": "c4-typical",
+    "cluster": 4,
+    "user": {
+      "age": 50,
+      "sleep_duration": 6.1,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 8,
+      "heart_rate": 75,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You match your group almost exactly: short sleep, high stress, high activity, and elevated blood pressure. Your activity and step count are well above most people in this data, but your sleep is shorter and your stress higher than most, which suggests recovery is the gap, not more exercise.",
+      "recommendations": [
+        "Pick a fixed wind-down window of about 30 minutes before bed with dim lights and no screens, at the same time each night, so your body gets a clearer sleep signal.",
+        "After a shift, spend 5 to 10 minutes on slow breathing or gentle stretching to help your nervous system come down before you try to sleep.",
+        "Keep one full rest day each week with no hard exercise, so the high activity load does not keep stacking up on short sleep.",
+        "Write a one-line stress note after each shift for a week, noting what pushed your stress up, so you can spot the patterns worth changing first."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 7.45,
+    "input_tokens": 1244,
+    "output_tokens": 880
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are 28, younger than most people in your group, but your sleep, stress, and activity numbers are all worse than the group average. Your sleep quality of 4 is well below the group, your stress of 8 is higher, and your daily steps of 3000 are far below the group average of around 5500.",
+      "recommendations": [
+        "Pick a fixed bedtime and wake time and keep them the same every day so you can add about 30 minutes to your 5.9 hours of sleep.",
+        "Set a 30-minute wind-down before bed with dim lights and no screens to give your sleep quality a chance to rise from 4.",
+        "Add a 20-minute walk on most days to start moving your step count up from 3000 toward 5000.",
+        "Try a 5-minute slow breathing exercise once a day, since your stress of 8 is higher than the group average of 7.2."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 9.39,
+    "input_tokens": 1249,
+    "output_tokens": 1273
+  },
+  {
+    "case": "c0-divergent-2",
+    "cluster": 0,
+    "user": {
+      "age": 29,
+      "sleep_duration": 6.3,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 40,
+      "daily_steps": 3500,
+      "stress_level": 7,
+      "heart_rate": 82,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Teacher"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You're 29 and your sleep, stress and activity numbers match your group, which tends to sleep short, feel stressed and move less than most people in this data. Your daily steps are well below your group's average and your heart rate is higher than most people here, so small movement changes could matter. Two things in your file (insomnia and blood pressure) are best handled with a professional.",
+      "recommendations": [
+        "Pick a fixed wake-up time and keep it on weekends too, so your sleep window stays steady even with short nights.",
+        "Add a 10 minute walk between classes or after school most days, since your 3500 daily steps are well below your group's average of around 5500.",
+        "Try 5 minutes of slow breathing or stretching right before bed, as a simple way to bring your stress level down from where it sits now.",
+        "Keep a short daily note on how you slept and how you felt, so you can spot patterns and share them with a professional at your next visit."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 12.02,
+    "input_tokens": 2977,
+    "output_tokens": 1532
+  },
+  {
+    "case": "c2-boundary-1",
+    "cluster": 2,
+    "user": {
+      "age": 43,
+      "sleep_duration": 6.9,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 47,
+      "daily_steps": 6800,
+      "stress_level": 7,
+      "heart_rate": 69,
+      "systolic": 117,
+      "diastolic": 76,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You sit in a group that usually sleeps well and stays active, but your numbers tell a different story: you sleep about 40 minutes less than your group, rate your sleep quality well below them, report more stress, and move less. Your blood pressure and resting heart rate are actually better than most people in this data, so those are not a concern right now.",
+      "recommendations": [
+        "Move your bedtime earlier by about 30 to 45 minutes on weeknights so you can get closer to 7.5 hours, and keep that bedtime within the same 30-minute window each day.",
+        "Pick one short wind-down habit in the hour before bed, such as 10 minutes of slow reading or gentle stretching, to lower the stress that is likely feeding into your poor sleep quality.",
+        "Add a 25 to 30 minute walk on at least four days this week, aiming to push your daily steps from around 6,800 toward 8,500, since your activity level is well below your group's."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 7.38,
+    "input_tokens": 1225,
+    "output_tokens": 905
+  },
+  {
+    "case": "c1-boundary-2",
+    "cluster": 1,
+    "user": {
+      "age": 56,
+      "sleep_duration": 8.2,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 118,
+      "diastolic": 75,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Doctor"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You sleep well, manage stress, and are far more active than most people in this data, including others in your group. Your numbers are stronger than your group's on activity, so the main thing to protect as you get a little older is the sleep and low stress you already have.",
+      "recommendations": [
+        "Keep a fixed wake-up time every day, including weekends, so your already long sleep stays steady as you age.",
+        "Pick a short wind-down routine before bed, like ten minutes of reading or stretching, to keep work stress from creeping into your sleep.",
+        "Your activity is well above average, so focus on keeping it enjoyable by rotating between walking, strength, and something you like doing for fun.",
+        "Add one short balance or mobility session a week, since high step counts can tighten hips and ankles over time."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3",
+    "reasoning": true,
+    "prompt_version": "v1",
+    "latency_seconds": 7.82,
+    "input_tokens": 1222,
+    "output_tokens": 848
+  }
+]

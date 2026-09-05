@@ -1,0 +1,78 @@
+[
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are 28, younger than most people in your group, and your sleep quality, daily steps, and stress stand out as concerns even within a group that already struggles with short sleep, high stress, and low activity. A professional should be aware of your reported sleep apnea and blood pressure reading.",
+      "recommendations": [
+        "Set a consistent bedtime that gives you at least seven hours in bed, since your 5.9 hours of sleep is lower than most people in this data and your group already sleeps short.",
+        "Add a 15-minute walk to your lunch break three days this week to start raising your 3,000 daily steps, the lowest in your group.",
+        "Pick one calming wind-down routine, such as ten minutes of slow breathing or stretching before bed, to help lower your stress level of 8, which is higher than most people in this data.",
+        "Track your sleep quality in a simple daily note so you can see which habits on this list are helping, since your sleep quality of 4 is well below your group's average of 6."
+      ]
+    },
+    "model": "openrouter:z-ai/glm-5.2:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 27.17,
+    "input_tokens": 1242,
+    "output_tokens": 228
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You are 58, sleep longer and rate your sleep quality higher than most people in your group, and you are also more physically active than your group on average. Your blood pressure and reported sleep apnea are things a professional should look at, but your sleep, stress and activity habits are already strong.",
+      "recommendations": [
+        "Add a short evening walk or ten-minute stretch after your shift to help your body wind down from the physical demands of nursing.",
+        "Keep your step count climbing by aiming for 8,000 steps on most days, building on the solid base you already have.",
+        "Use your low stress levels to your advantage by setting aside five minutes of quiet breathing or stretching before bed to protect your already good sleep quality.",
+        "Since you already sleep well, keep a consistent wake time even on days off to help your body clock stay steady through rotating shifts."
+      ]
+    },
+    "model": "openrouter:z-ai/glm-5.2:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 2.02,
+    "input_tokens": 1255,
+    "output_tokens": 186
+  }
+]

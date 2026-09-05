@@ -1,0 +1,112 @@
+[
+  {
+    "case": "c0-typical",
+    "cluster": 0,
+    "user": {
+      "age": 42,
+      "sleep_duration": 6.5,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 45,
+      "daily_steps": 6000,
+      "stress_level": 7,
+      "heart_rate": 72,
+      "systolic": 130,
+      "diastolic": 85,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Salesperson"
+    },
+    "referral_reasons": [
+      "reports insomnia"
+    ],
+    "guidance": {
+      "summary": "You are typical for your group: your sleep, stress, and activity numbers are close to the averages for adults in their late thirties who get short, poor sleep, have high stress, and are the least active. Your reported insomnia is something a professional should review, but it does not change the habit guidance below.",
+      "recommendations": [
+        "Go to bed 20 minutes earlier than usual and keep lights dim to help you fall asleep faster.",
+        "When you feel stressed, pause for two minutes of slow breathing before reacting.",
+        "Add a 10-minute walk after lunch each day to boost your daily steps."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 4.02,
+    "input_tokens": 1355,
+    "output_tokens": 181
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You are older than most in your group and sleep longer and better than average, while staying active. Your blood pressure is elevated despite good habits, and you have reported sleep apnea, which a professional should evaluate.",
+      "recommendations": [
+        "Keep your current sleep routine of about 8 hours per night, as it supports your well-being.",
+        "Add a 10-minute walk after dinner on three days this week to build on your already active lifestyle.",
+        "Try a five-minute breathing exercise before bed to help manage any lingering tension."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 2.72,
+    "input_tokens": 1432,
+    "output_tokens": 169
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are younger than most in your group but get less sleep and poorer sleep quality, with higher stress and much lower activity. Your blood pressure is elevated and you report sleep apnea, which a professional should review.",
+      "recommendations": [
+        "Go to bed 30 minutes earlier tonight to increase your sleep toward 6.5 hours.",
+        "Take a five-minute walk after lunch each workday to add about 500 steps.",
+        "Practice slow breathing for two minutes before bedtime to lower stress and improve sleep quality."
+      ]
+    },
+    "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 5.82,
+    "input_tokens": 1417,
+    "output_tokens": 166
+  }
+]

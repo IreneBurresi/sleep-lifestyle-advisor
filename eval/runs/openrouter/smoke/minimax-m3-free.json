@@ -1,0 +1,115 @@
+[
+  {
+    "case": "c0-typical",
+    "cluster": 0,
+    "user": {
+      "age": 42,
+      "sleep_duration": 6.5,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 45,
+      "daily_steps": 6000,
+      "stress_level": 7,
+      "heart_rate": 72,
+      "systolic": 130,
+      "diastolic": 85,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Salesperson"
+    },
+    "referral_reasons": [
+      "reports insomnia"
+    ],
+    "guidance": {
+      "summary": "You sit right at the group average on sleep, stress and activity, so the group's general guidance applies to you directly. Your numbers for these are further from most people in this data, and a professional will be looking at the insomnia you reported.",
+      "recommendations": [
+        "Add a 20 to 30 minute brisk walk after dinner most days this week, aiming to lift your daily steps above 7,000 without needing extra gym time.",
+        "Set a fixed lights-out time and a 30 minute wind-down with no phone, since your sleep quality tracks below most people in this data and routine is the easiest lever.",
+        "Keep a brief stress log each evening for one week, jotting the main pressure and one small thing you could do tomorrow to ease it, so the pattern becomes visible before you try to change it.",
+        "Break your physical activity into two shorter sessions, like a morning walk and a lunchtime loop, if one longer block is hard to fit around a sales schedule."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 10.9,
+    "input_tokens": 3097,
+    "output_tokens": 446
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You sleep less than most people in your group, and the sleep you do get rates much lower in quality, so rest is the area most worth working on. Stress is also a bit higher than your group's average, and your daily steps sit well below both your group and everyone else.",
+      "recommendations": [
+        "Pick a fixed lights-out time seven nights a week and stop looking at screens in the last 30 minutes before it, to give yourself a real chance at more hours.",
+        "Add a short wind-down ritual like reading, stretching or dim lighting, since your sleep quality sits well below your group's and small cues help.",
+        "Walk for 15 to 20 minutes most days, even split into two blocks, to start closing the gap of about 2500 daily steps from your group's average.",
+        "Take one short daily break where you step away from work and breathe slowly for two minutes, to ease the stress that runs higher than your group's."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 19.11,
+    "input_tokens": 3355,
+    "output_tokens": 543
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You sleep longer and rate sleep higher than most people in this group, and your physical activity is also above your group's average, so your habits are already doing real work. Your blood pressure reading and reported sleep apnea are flagged for a professional to look at, separately from anything covered here.",
+      "recommendations": [
+        "Add one brisk 20-minute walk on workdays, since you already walk more than most of your group and small movement gains tend to suit shift-based nursing routines.",
+        "Keep a simple sleep and energy log for two weeks to spot which shift patterns support your already-strong sleep duration and quality.",
+        "Use your low reported stress as an advantage by protecting one 30-minute wind-down window before bed after busy shifts.",
+        "Park further from entrances or take the stairs on lighter days to nudge daily steps a little higher without adding structured exercise."
+      ]
+    },
+    "model": "openrouter:minimax/minimax-m3:free",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "latency_seconds": 8.24,
+    "input_tokens": 3449,
+    "output_tokens": 464
+  }
+]
