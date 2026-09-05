@@ -1,0 +1,33 @@
+## Group profile (cluster {{ a.cluster }} of 5, {{ p.size }} people)
+{{ p.summary }}
+Focus areas for this group:
+{% for f in p.focus %}
+- {{ f }}
+{% endfor %}
+Group vs everyone, in standard deviations: {% for k, v in p.deviation_from_population_sd.items() %}{{ k }} {{ "%+.1f"|format(v) }}{{ ", " if not loop.last }}{% endfor %}
+
+
+## This person
+Labels: BMI category {{ u.bmi_category }}; reported sleep disorder: {{ u.sleep_disorder }}{% if u.gender %}; gender {{ u.gender }}{% endif %}{% if u.occupation %}; occupation {{ u.occupation }}{% endif %}.
+Measurements (the only numbers to compare):
+
+| measure | this person | group mean | everyone mean | vs group (SD) | vs everyone (SD) |
+|---|---|---|---|---|---|
+{% for column, value in values.items() %}
+| {{ column }} | {{ value|g }} | {{ p.mean[column]|g }} | {{ a.population_mean[column]|g }} | {{ "%+.1f"|format(a.delta_from_cluster[column]) }} | {{ "%+.1f"|format(a.delta_from_population[column]) }} |
+{% endfor %}
+Stands out from the group (at least 0.5 SD): {% set out = [] %}{% for column, d in a.delta_from_cluster.items() if d|abs >= 0.5 %}{% set _ = out.append(column ~ " " ~ "%+.1f"|format(d)) %}{% endfor %}{{ out|join(", ") if out else "nothing, this person is typical of the group" }}
+
+## Fixed flags (a professional should look at these; do not advise on them)
+{% for r in a.referral_reasons %}
+- {{ r }}
+{% else %}
+- none
+{% endfor %}
+{% if snippets %}
+
+## Reference notes (use only what applies to this person)
+{% for s in snippets %}
+- [{{ s.source }}] {{ s.text }}
+{% endfor %}
+{% endif %}

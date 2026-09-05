@@ -1,6 +1,6 @@
 # Clustering notes
 
-How the five groups were built and how much to trust them. The code is in `notebooks/clustering.ipynb`; the reasons behind the choices are in `notebooks/features.ipynb` and in `notebooks/analysis/`.
+How the five groups were built and how much to trust them. The exploration is in `notebooks/clustering.ipynb` and `python -m advisor.cli.fit` (`make fit`) refits the same model and writes the artifacts; the reasons behind the choices are in `notebooks/features.ipynb` and in `notebooks/analysis/`.
 
 ## The data
 
@@ -33,32 +33,32 @@ Stability does not either. The test: fit on a random 80% of the rows, use that f
 
 ![stability](../figures/stability.png)
 
-So k is a choice for use, not a number the scores give. k = 7 is k = 5 with two groups cut in two. I keep 5 because each group becomes a short written profile for the language model, five are easier to tell apart in words than seven, and the silhouette has its first peak there. Details in `analysis/k.ipynb`.
+So k is a choice for use, not a number the scores give. k = 7 is k = 5 with two groups cut in two. I keep 5 because each group becomes a short written profile for the language model, and the silhouette has its first peak there. Details in `analysis/k.ipynb`.
 
 ## The five groups
 
-| cluster | people | in short |
-|---|---|---|
-| 0 | 101 | Late thirties. Short and poor sleep, high stress, the least active. About half overweight. |
-| 1 | 34 | Early fifties, normal BMI. Longest and best sleep, lowest stress, little activity. |
-| 2 | 145 | Late thirties, normal BMI. Sleep well, active, lowest blood pressure. |
-| 3 | 62 | Around 52, overweight or obese. Sleep well and report low stress, but blood pressure almost as high as cluster 4. |
-| 4 | 32 | Around 50, overweight, the most active. Shortest sleep, highest stress, highest blood pressure. |
+| cluster | people | in short | guidance should be about |
+|---|---|---|---|
+| 0 | 101 | Late thirties. Short and poor sleep, high stress, the least active. About half overweight. | sleep duration and quality, stress, activity |
+| 1 | 34 | Early fifties, normal BMI. Longest and best sleep, lowest stress, little activity. | activity; keeping the rest |
+| 2 | 145 | Late thirties, normal BMI. Sleep well, active, lowest blood pressure. | maintenance, small refinements |
+| 3 | 62 | Around 52, overweight or obese. Sleep well and report low stress, but blood pressure almost as high as cluster 4. 92% have a sleep disorder. | blood pressure and the disorder, which go to a professional; weight, through movement |
+| 4 | 32 | Around 50, overweight, the most active. Shortest sleep, highest stress, highest blood pressure. | stress and short sleep, recovery; blood pressure and heart rate go to a professional |
 
-The descriptions are read from the group means and from the crosstabs with BMI, sleep disorder and gender in `clustering.ipynb`. Two things to keep in mind: clusters 1 and 4 are 9 and 8 distinct rows repeated, and clusters 1, 3 and 4 are almost all women, because gender goes with age in this data.
+The descriptions are read from the group means and from the crosstabs with BMI, sleep disorder and gender in `clustering.ipynb`. The last column is what the fit step writes as `focus` in `profiles.json`: the perimeter the prompt gives the language model, not advice. Two things to keep in mind: clusters 1 and 4 are 9 and 8 distinct rows repeated, and clusters 1, 3 and 4 are 100%, 97% and 100% women (see Limits).
 
 ## Checks
 
-Sleep Disorder was not a feature. Clusters 1 and 2 are almost all without a disorder, cluster 0 holds most of the insomnia, clusters 3 and 4 most of the apnea. Cluster 3 matters for the guidance step: 57 people out of 62 have a disorder, with habits close to the healthy groups. What differs is blood pressure and age.
+Sleep Disorder was not a feature. Clusters 1 and 2 are 97% and 94% without a disorder, cluster 0 holds 45 of the 77 insomnia cases, clusters 3 and 4 hold 61 of the 78 apnea cases. Cluster 3 matters for the guidance step: 57 people out of 62 have a disorder, with habits close to the healthy groups. What differs is blood pressure and age.
 
-The match is modest. BMI on its own explains the disorder better than the clusters (0.43 against 0.33 normalised mutual information). I read the check as a confirmation that the groups carry some information about the disorder.
+The match is modest: the clusters carry less information about the disorder than BMI alone (0.33 against 0.43 normalised mutual information).
 
 ## Limits
 
 - Synthetic data. Silhouette at k = 5 is 0.52 on all rows and 0.43 on the distinct rows, against 0.13 for shuffled data; on real measurements it would be lower, and k would have to be chosen again because here no score separates one k from another.
 - Two groups are a handful of rows repeated.
 - Four of the five groups are one BMI category. Removing BMI keeps most of the partition (ARI 0.89), but the groups are partly a BMI split.
-- Three groups are almost all women, so the guidance will differ by gender even though gender is not an input.
+- Three groups are 97% to 100% women, because gender goes with age in this data, so the guidance will differ by gender even though gender is not an input.
 - No Underweight users in the data. The code rejects such a row.
 
 ## What I would try next

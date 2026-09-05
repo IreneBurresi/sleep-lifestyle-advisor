@@ -4,8 +4,6 @@ Reproduces what notebooks/features.ipynb does, so that the same
 transformation runs on the training data and on a new user.
 """
 
-from __future__ import annotations
-
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -35,6 +33,7 @@ FEATURES = [
 ]
 
 BMI_LEVELS = {"Normal": 0, "Overweight": 1, "Obese": 2}
+BMI_ALIASES = {"Normal Weight": "Normal"}
 
 ACTIVITY_PAIR = ["Physical Activity Level", "Daily Steps"]
 
@@ -46,7 +45,7 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
         raise ValueError(f"missing columns: {missing}")
 
     out = df.copy()
-    out["BMI Category"] = out["BMI Category"].replace({"Normal Weight": "Normal"})
+    out["BMI Category"] = out["BMI Category"].replace(BMI_ALIASES)
     unknown = sorted(set(out["BMI Category"]) - set(BMI_LEVELS), key=str)
     if unknown:
         raise ValueError(f"unknown BMI category {unknown}, expected one of {list(BMI_LEVELS)}")
@@ -70,7 +69,7 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
 class WellnessFeatures(BaseEstimator, TransformerMixin):
     """Raw rows in, the eight clustering features out."""
 
-    def fit(self, X: pd.DataFrame, y: object = None) -> WellnessFeatures:
+    def fit(self, X: pd.DataFrame, y: object = None) -> "WellnessFeatures":
         cleaned = clean(X)
         self.means_ = cleaned[ACTIVITY_PAIR].mean()
         self.stds_ = cleaned[ACTIVITY_PAIR].std()
