@@ -1,0 +1,7 @@
+[
+  {"question": "How many minutes of moderate-intensity aerobic activity per week do adults need?", "source": "physical_activity_guidelines_2018", "keyword": "150"},
+  {"question": "How often should adults do muscle-strengthening activity?", "source": "physical_activity_guidelines_2018", "keyword": "2 days"},
+  {"question": "How much sleep do adults need each night?", "source": "healthy_sleep_guide_nih", "keyword": "7"},
+  {"question": "Does caffeine in the afternoon affect sleep?", "source": "healthy_sleep_guide_nih", "keyword": "caffeine"},
+  {"question": "What should I do if I cannot fall asleep after going to bed?", "source": "healthy_sleep_guide_nih", "keyword": "get up"}
+]

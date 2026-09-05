@@ -1,0 +1,517 @@
+[
+  {
+    "case": "c0-typical",
+    "cluster": 0,
+    "user": {
+      "age": 42,
+      "sleep_duration": 6.5,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 45,
+      "daily_steps": 6000,
+      "stress_level": 7,
+      "heart_rate": 72,
+      "systolic": 130,
+      "diastolic": 85,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Salesperson"
+    },
+    "referral_reasons": [
+      "reports insomnia"
+    ],
+    "guidance": {
+      "summary": "You share the typical profile of your group, featuring short sleep duration, low sleep quality, high stress, and low physical activity compared to most people in this data. Your reported insomnia adds an extra challenge to getting the restorative rest you need.",
+      "recommendations": [
+        "Aim to add a brief walk into your daily routine to gently increase your activity, keeping in mind that the U.S. activity guidelines suggest reaching at least 150 minutes of moderate activity weekly.",
+        "Set a consistent wake-up time each morning, including weekends, to help reinforce your body's natural sleep rhythm and manage your reported insomnia.",
+        "Create a calming wind-down ritual thirty minutes before bed, such as reading or listening to quiet music, to help lower your stress levels."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines adults moderate intensity aerobic activity weekly minutes",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
+        ]
+      },
+      {
+        "query": "healthy sleep tips maintain consistent sleep schedule wind down routine",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 34",
+          "Your Guide to Healthy Sleep, p. 34",
+          "Your Guide to Healthy Sleep, p. 35"
+        ]
+      }
+    ],
+    "latency_seconds": 3.64,
+    "input_tokens": 5831,
+    "output_tokens": 225
+  },
+  {
+    "case": "c1-typical",
+    "cluster": 1,
+    "user": {
+      "age": 53,
+      "sleep_duration": 8.4,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 30,
+      "daily_steps": 5000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 125,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You sit right at the group average for every measure, sharing a pattern of long, restful sleep, very low stress, and lower physical activity than most people in this data. Focusing on gentle movement will help support your long-term health while keeping your excellent sleep habits intact.",
+      "recommendations": [
+        "Add a ten minute walk after lunch each day to gently raise your activity levels above your current baseline.",
+        "Aim to build towards the activity levels where the U.S. activity guidelines suggest at least 150 minutes of moderate activity per week.",
+        "Keep your current relaxing evening wind down routine to maintain your eight hours of restful sleep and low stress."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines for adults aerobic moderate intensity minutes per week",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
+        ]
+      },
+      {
+        "query": "tips for increasing daily steps walking habits sleep environment consistency",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111"
+        ]
+      }
+    ],
+    "latency_seconds": 3.68,
+    "input_tokens": 5687,
+    "output_tokens": 204
+  },
+  {
+    "case": "c2-typical",
+    "cluster": 2,
+    "user": {
+      "age": 35,
+      "sleep_duration": 7.5,
+      "quality_of_sleep": 8,
+      "physical_activity_level": 60,
+      "daily_steps": 8000,
+      "stress_level": 5,
+      "heart_rate": 70,
+      "systolic": 120,
+      "diastolic": 80,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Software Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You stand out from your group primarily through a lower physical activity level, while your sleep duration, quality of sleep, and stress levels remain healthy and well-balanced. Focusing on small, sustainable adjustments to your weekly activity will help you match the habits of your peers.",
+      "recommendations": [
+        "Aim for at least 150 minutes of moderate-intensity aerobic activity each week, as the U.S. activity guidelines suggest, to bridge the gap between your physical activity level and your group.",
+        "Add a ten-minute brisk walk during your workday to gently raise your daily physical activity level without adding strain to your routine.",
+        "Keep your current bedtime and wake-up schedule consistent across the entire week to maintain your strong sleep quality."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines adults moderate aerobic activity weekly minutes",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
+        ]
+      },
+      {
+        "query": "healthy sleep habits maintaining sleep duration schedule",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 27",
+          "Your Guide to Healthy Sleep, p. 28",
+          "Your Guide to Healthy Sleep, p. 34"
+        ]
+      },
+      {
+        "query": "tips for healthy sleep routine schedule consistency",
+        "results": []
+      }
+    ],
+    "latency_seconds": 4.04,
+    "input_tokens": 8332,
+    "output_tokens": 238
+  },
+  {
+    "case": "c3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You are maintaining strong physical activity levels and reporting better sleep duration and quality than most people in this data. A professional should take a closer look at your blood pressure of 140/95 and your reported sleep apnea.",
+      "recommendations": [
+        "Build on your higher physical activity level by aiming for at least 150 minutes of moderate-intensity aerobic activity each week, as the U.S. activity guidelines suggest.",
+        "Maintain your consistent sleep schedule by going to bed and waking up at the same times every single day to support your overall rest.",
+        "Discuss your blood pressure reading of 140/95 and your reported sleep apnea with a qualified medical professional for proper clinical evaluation."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines adults aerobic weekly minutes",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
+        ]
+      },
+      {
+        "query": "NIH healthy sleep guide tips for maintaining sleep routine",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 28",
+          "Your Guide to Healthy Sleep, p. 15",
+          "Your Guide to Healthy Sleep, p. 63"
+        ]
+      },
+      {
+        "query": "NIH healthy sleep habits wake schedule maintain daily timing",
+        "results": []
+      }
+    ],
+    "latency_seconds": 4.04,
+    "input_tokens": 8638,
+    "output_tokens": 235
+  },
+  {
+    "case": "c4-typical",
+    "cluster": 4,
+    "user": {
+      "age": 50,
+      "sleep_duration": 6.1,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 8,
+      "heart_rate": 75,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Insomnia",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You sit right at your group average across every measure, meaning your high stress and short sleep match peers who share your heavy activity levels. Your fixed flags note a reported sleep disorder and elevated blood pressure that a professional should evaluate.",
+      "recommendations": [
+        "Set aside a dedicated wind-down period each evening with a relaxing activity like reading, as the guide to healthy sleep suggests.",
+        "If you cannot fall asleep within twenty minutes, get out of bed and do a quiet activity in another room until you feel sleepy.",
+        "Shift some of your high physical effort into deliberate recovery practices like gentle stretching or meditation to help manage your stress levels.",
+        "Discuss your blood pressure readings of 140/95 and your reported insomnia with a healthcare professional soon."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "recovery relaxation wind down sleep duration guidelines",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 42",
+          "Your Guide to Healthy Sleep, p. 27",
+          "Your Guide to Healthy Sleep, p. 34"
+        ]
+      },
+      {
+        "query": "stress reduction physical activity recovery guidelines",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 10",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 90",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 20"
+        ]
+      },
+      {
+        "query": "stress management relaxation techniques guide to healthy sleep",
+        "results": []
+      }
+    ],
+    "latency_seconds": 4.07,
+    "input_tokens": 8122,
+    "output_tokens": 241
+  },
+  {
+    "case": "c0-divergent-1",
+    "cluster": 0,
+    "user": {
+      "age": 28,
+      "sleep_duration": 5.9,
+      "quality_of_sleep": 4,
+      "physical_activity_level": 30,
+      "daily_steps": 3000,
+      "stress_level": 8,
+      "heart_rate": 85,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Male",
+      "occupation": "Sales Representative"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "At age twenty-eight, you are younger than your group, yet you experience notably lower sleep quality, higher stress, and much lower daily steps than most people in this data. A medical professional will need to evaluate your reported sleep apnea and blood pressure reading.",
+      "recommendations": [
+        "Add a short walk after lunch each day to gently lift your daily steps above your current baseline of three thousand.",
+        "Gradually increase your step count each week by adding a ten minute walk, following the gradual progression outlined in the U.S. activity guidelines.",
+        "Turn off screens thirty minutes before bedtime to help improve your sleep quality from its current low level.",
+        "Set a consistent wind down routine in the evening to help manage your stress level and protect your five point nine hours of sleep duration."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines adults aerobic walking steps",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 112",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 112"
+        ]
+      },
+      {
+        "query": "NIH healthy sleep habits wind down screen time",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 28",
+          "Your Guide to Healthy Sleep, p. 66",
+          "Your Guide to Healthy Sleep, p. 7"
+        ]
+      },
+      {
+        "query": "tips for healthy sleep wind down routine bedtime",
+        "results": []
+      }
+    ],
+    "latency_seconds": 4.36,
+    "input_tokens": 8973,
+    "output_tokens": 249
+  },
+  {
+    "case": "c0-divergent-2",
+    "cluster": 0,
+    "user": {
+      "age": 29,
+      "sleep_duration": 6.3,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 40,
+      "daily_steps": 3500,
+      "stress_level": 7,
+      "heart_rate": 82,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Teacher"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are younger than most people in this data, with daily steps that are notably lower than your group and a blood pressure reading of 140/90 that warrants professional review alongside your insomnia. While your sleep duration and stress align with your group, focusing on gradual movement and a calm bedtime routine can help improve your overall rest.",
+      "recommendations": [
+        "Aim to add five hundred steps to your daily routine each week until you comfortably exceed your current average of 3,500 steps.",
+        "The NIH guide to healthy sleep suggests setting a consistent sleep schedule by going to bed and waking up at the same time each day.",
+        "The NIH guide to healthy sleep also recommends including a relaxing wind-down activity like reading as part of your bedtime ritual."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines steps per day for adults",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 112",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111"
+        ]
+      },
+      {
+        "query": "sleep tips consistency wind down NIH guide to healthy sleep",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 42",
+          "Your Guide to Healthy Sleep, p. 34",
+          "Your Guide to Healthy Sleep, p. 33"
+        ]
+      }
+    ],
+    "latency_seconds": 3.19,
+    "input_tokens": 5867,
+    "output_tokens": 223
+  },
+  {
+    "case": "c2-boundary-1",
+    "cluster": 2,
+    "user": {
+      "age": 43,
+      "sleep_duration": 6.9,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 47,
+      "daily_steps": 6800,
+      "stress_level": 7,
+      "heart_rate": 69,
+      "systolic": 117,
+      "diastolic": 76,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Male",
+      "occupation": "Engineer"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You have a normal BMI and good blood pressure, but your stress level is notably higher while your physical activity, sleep duration, and sleep quality fall behind your group. Focusing on small adjustments to your daily routine can help bridge this gap.",
+      "recommendations": [
+        "Set a consistent wind-down alarm thirty minutes before your target bedtime to help address your lower sleep duration and quality compared to your group.",
+        "Get out of bed and do a quiet activity in another room if you cannot fall asleep within twenty minutes, as the healthy sleep guide suggests.",
+        "Aim to build your weekly activity level toward the U.S. activity guidelines of at least 150 minutes of moderate activity.",
+        "Schedule a ten-minute breathing break during your workday to help manage your stress level, which is higher than most people in this data."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines moderate intensity aerobic minutes per week",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8"
+        ]
+      },
+      {
+        "query": "how to improve sleep hygiene and duration healthy sleep guide NIH",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 42",
+          "Your Guide to Healthy Sleep, p. 34",
+          "Your Guide to Healthy Sleep, p. 34"
+        ]
+      }
+    ],
+    "latency_seconds": 3.55,
+    "input_tokens": 5903,
+    "output_tokens": 238
+  },
+  {
+    "case": "c1-boundary-2",
+    "cluster": 1,
+    "user": {
+      "age": 56,
+      "sleep_duration": 8.2,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 90,
+      "daily_steps": 10000,
+      "stress_level": 3,
+      "heart_rate": 65,
+      "systolic": 118,
+      "diastolic": 75,
+      "bmi_category": "Normal",
+      "sleep_disorder": "No disorder",
+      "gender": "Female",
+      "occupation": "Doctor"
+    },
+    "referral_reasons": [],
+    "guidance": {
+      "summary": "You stand out from your group by having a much higher physical activity level and daily step count, while matching their excellent sleep duration and remarkably low stress. Your strong activity habits provide a solid foundation for aging well, and you can focus on maintaining your restorative sleep and calm mindset over time.",
+      "recommendations": [
+        "Maintain your impressive daily routine, but ensure your high steps include varied terrain or brisk pacing to keep challenging your cardiovascular system safely.",
+        "Incorporate muscle-strengthening activities on at least two days a week, as the U.S. activity guidelines suggest for all adults.",
+        "Preserve your exceptional sleep duration and quality by keeping a consistent bedtime routine as you get older.",
+        "Keep protecting your low stress levels by scheduling intentional pauses during your busy working days."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines adults aerobic weekly minutes",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 56",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 8",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109"
+        ]
+      },
+      {
+        "query": "sleep hygiene tips for older adults healthy sleep guide",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 26",
+          "Your Guide to Healthy Sleep, p. 34",
+          "Your Guide to Healthy Sleep, p. 28"
+        ]
+      },
+      {
+        "query": "adults muscle strengthening activities guidelines",
+        "results": []
+      }
+    ],
+    "latency_seconds": 4.05,
+    "input_tokens": 8393,
+    "output_tokens": 245
+  }
+]

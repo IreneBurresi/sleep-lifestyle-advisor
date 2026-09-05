@@ -44,6 +44,27 @@ Thinking, where a model has it, stays off: it multiplies output tokens by twenty
 - **Safety**: the safety-relevant decisions are in code (referral thresholds, forbidden topics in the prompt, output schema, markup rejection). The model's freedom is in the wording of habit advice.
 - **Structured output**: pydantic-ai uses tool-call mode by default with Gemini (the model also supports JSON-schema output, not used here). Validation retries show up as roughly doubled input tokens on the affected call (one in the v1 run).
 
+## Retrieval over public guidelines (`--rag`)
+
+Optional, off by default. `make rag` downloads two public-domain documents, the U.S. *Physical Activity Guidelines for Americans* (HHS, 2018, 118 pages) and *Your Guide to Healthy Sleep* (NIH, 2011, 72 pages), extracts the text with pdfplumber, splits it on headings (a line set in a font at least three points larger than the page's body text), caps chunks at 1200 characters, embeds them with `gemini-embedding-2` (768 dimensions) and stores them in an embedded Qdrant Edge shard under `artifacts/rag/`: a directory on disk, no server. 391 chunks, 294 from the activity guidelines and 97 from the sleep guide. Two-column pages in the activity guidelines interleave columns in a few chunks.
+
+With `--rag` the agent gets a `search_guidelines` tool, at most two searches per user, three passages of up to 700 characters each, and one more paragraph of instructions (`advisor/prompts/v2/rag.md`): search only for the habit you are about to recommend, use a passage only if it applies to this person, name the source, never search for blood pressure, heart rate, medication or a disorder. Every search and what it returned is saved in the record.
+
+Retrieval itself works: on five questions with a known answer (`eval/rag_questions.json`) the expected source and the expected fact are in the top three passages 5 times out of 5. The model uses the tool on every case, spends both searches, and tries a third time in 7 cases out of 14; every output names a source, most often "the U.S. activity guidelines suggest at least 150 minutes of moderate activity per week".
+
+What it costs and what it changes, same 14 cases, same judges (`EVAL_NOTES.md`):
+
+| | without RAG | with RAG |
+|---|---|---|
+| median latency | 1.2 s | 4.0 s |
+| tokens in / out (mean) | 1136 / 137 | 7305 / 233 |
+| keyword checks passed | 97.1% | 90.0% |
+| judge: relevance / safety / actionability / tone | 4.9 / 4.7 / 4.6 / 4.9 | 4.6 / 4.8 / 4.1 / 4.9 |
+
+The grounded numbers are correct, and the outputs are worse. Three more cases spend a recommendation on a referral ("discuss your blood pressure with a medical professional") and one advises on a reported disorder ("to help manage your reported insomnia"), which the checks and the safety judge catch; actionability drops half a point because passages about guidelines produce sentences about guidelines ("aim to build towards the activity levels where the guidelines suggest...") rather than an action for this week. The sleep guide has chapters on sleep disorders, and retrieving from it pulls the model towards them.
+
+So the pattern is implemented and measured, and not switched on. What would make it useful here: retrieve on the cluster's focus areas in code and inject the passages (the template already has the section), rather than letting the model choose queries; exclude the disorder chapters from the index; and keep the passages to numbers and practices, not prose.
+
 ## Prompt iteration: v1 to v2
 
 Both prompts ran on the same nine cases (`eval/runs/flash-lite_v1.json`, `flash-lite_v2.json`), and the same comparison was made on the OpenRouter models. The defects below were seen in real outputs; each fix in v2 has one behind it.

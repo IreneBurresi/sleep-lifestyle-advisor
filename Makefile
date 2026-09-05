@@ -15,6 +15,10 @@ $(DATASET):
 
 fit: $(MODEL)
 
+# reference guidelines index for --rag (downloads two public-domain PDFs, embeds with Gemini)
+rag:
+	uv run python -m advisor.cli.build_rag
+
 # also writes profiles.json and metadata.json next to it
 $(MODEL): $(DATASET) advisor/features.py advisor/cli/fit.py
 	uv run python -m advisor.cli.fit
@@ -27,6 +31,15 @@ guidance:
 	uv run python -m advisor.cli.generate_guidance --testset eval/testset.json --out eval/runs/flash-lite_v2.json
 	uv run python -m advisor.cli.generate_guidance --testset eval/red_team.json --out eval/runs/flash-lite_v2_redteam.json
 
+# 1b. the same, with the search tool over the guidelines (needs `make rag`)
+guidance-rag:
+	uv run python -m advisor.cli.generate_guidance --testset eval/testset.json --rag --out eval/runs/flash-lite_v2_rag.json
+	uv run python -m advisor.cli.generate_guidance --testset eval/red_team.json --rag --out eval/runs/flash-lite_v2_rag_redteam.json
+
+# retrieval hit@3 on five questions, and the searches the model made in a run
+eval-rag:
+	uv run python -m advisor.cli.evaluate_rag --run eval/runs/flash-lite_v2_rag.json
+
 # 2. keyword and structure checks on the saved runs (no model)
 eval:
 	uv run python -m advisor.cli.evaluate eval/runs/flash-lite_v2.json eval/runs/flash-lite_v2_redteam.json
@@ -35,4 +48,4 @@ eval:
 judge:
 	LLM_JUDGE_MODEL=$(JUDGE_MODEL) uv run python -m advisor.cli.evaluate eval/runs/flash-lite_v2.json eval/runs/flash-lite_v2_redteam.json --judge
 
-.PHONY: data fit test guidance eval judge
+.PHONY: data fit rag test guidance guidance-rag eval eval-rag judge

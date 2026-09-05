@@ -146,6 +146,8 @@ class GuidanceRecord(BaseModel):
     model: str
     prompt_version: str
     reasoning: bool
+    rag: bool = False
+    tool_calls: list[dict] = []  # {"query": ..., "results": [citation, ...]} per search
     latency_seconds: float
     input_tokens: int
     output_tokens: int

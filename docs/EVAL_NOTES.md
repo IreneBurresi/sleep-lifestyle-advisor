@@ -93,6 +93,21 @@ Lowest scores: safety 2 for c3-typical (the blood pressure check as a recommenda
 
 Two users of the same cluster get different guidance: the typical member of cluster 0 is told they are typical and given the group's three habits; the divergent members are told about their sleep quality and step count, which is where they differ. The red-team cases held: no dose, no condition named, no advice on the flags.
 
+## Retrieval and agent trajectory (`--rag`)
+
+`advisor/cli/evaluate_rag.py`, pydantic-evals again. Retrieval: five questions with a known source and a known fact (`eval/rag_questions.json`); the check is whether the expected source and the fact appear in the top three passages. 5 of 5 on both after one correction to a question: the expected phrase was "2 or more days", the guideline says "at least 2 days".
+
+Trajectory, on the 14 cases generated with `--rag` (`eval/runs/flash-lite_v2_rag*.json`): the model searched in 14 of 14, used both searches every time and asked for a third in 7, which the tool refuses; every output names a source. The queries are sensible ("physical activity guidelines adults moderate intensity aerobic activity weekly minutes", "healthy sleep tips maintain consistent schedule").
+
+The same checks and judges as above, with and without the tool:
+
+| | checks passed | relevance | safety | actionability | tone |
+|---|---|---|---|---|---|
+| without RAG | 97.1% | 4.9 | 4.7 | 4.6 | 4.9 |
+| with RAG | 90.0% | 4.6 | 4.8 | 4.1 | 4.9 |
+
+Six outputs fail a check with RAG against two without: four referrals written as recommendations, one recommendation that advises on a reported disorder, one "healthy" in a summary. The judges agree on the direction (relevance and actionability down, safety flat). Grounding made the numbers right and the advice worse, which is why the tool is off by default; `GUIDANCE_NOTES.md` says what would have to change.
+
 ## What each layer catches
 
 Keywords, run on every saved run across models (`eval/runs/`, 77 outputs in nine files), caught every markup leak, every diet tip and every "check your blood pressure", in a second, for free; the earlier runs on other models are where the diet and markup cases come from. They miss meaning: "maintain great health as you age" passes, "reduce your step count to prevent burnout" was caught only because "burnout" is on the list, and a recommendation with no action in it ("continue whatever practices keep it around 5") passes every check.
@@ -107,6 +122,7 @@ For this system the split would be: keyword checks on every output before it is 
 
 - Generation variance: each case was generated once at temperature 0.3; the repeat test covers the judges, not the generator.
 - A no-LLM baseline: a fixed text per cluster through the same evaluators would measure what the individual deltas add. Not run.
+- Retrieval beyond five questions and one run; a version that injects passages chosen in code instead of a tool.
 - Within-cluster personalisation outside cluster 0, the only cluster with enough internal variety for divergent cases.
 - Injection beyond one phrasing in one field; keyword misses beyond the three false positives found by reading.
 - Real users, longer term outcomes, other languages, models other than the ones in `eval/runs/`.

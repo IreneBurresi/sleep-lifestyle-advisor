@@ -47,7 +47,9 @@ uv run python -m advisor.cli.generate_guidance --user me.json # your own data, f
 ```
 
 Add `--show-prompt` to see the prompt without calling the model, `--out file.json` to save
-the results, `--prompt-version v1` to run the earlier prompt (`advisor/prompts/`). The prompt has three labelled sections: the cluster profile with its focus
+the results, `--prompt-version v1` to run the earlier prompt (`advisor/prompts/`), `--rag` to give
+the model a search tool over two public guidelines (after `make rag`, which downloads the PDFs
+and builds an embedded Qdrant index under `artifacts/rag/`; off by default, see the notes). The prompt has three labelled sections: the cluster profile with its focus
 areas, the person's numbers compared with their cluster and with everyone, and fixed flags.
 The flags are computed in code, printed with the guidance, and the model is told not to
 advise on them; thresholds in `docs/GUIDANCE_NOTES.md`.
@@ -56,6 +58,7 @@ advise on them; thresholds in `docs/GUIDANCE_NOTES.md`.
 
 ```bash
 make guidance   # regenerate eval/runs/flash-lite_v2*.json for the 9 test cases and the 5 red-team cases
+make guidance-rag  # the same with the search tool; make eval-rag checks retrieval and the searches made
 make eval       # keyword and structure checks on the saved runs, no model
 make judge      # four LLM judges (relevance, safety, actionability, tone) on the saved runs
 ```

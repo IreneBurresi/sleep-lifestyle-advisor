@@ -23,6 +23,7 @@ def available_versions() -> list[str]:
 class Prompt:
     version: str
     system: str
+    rag_addendum: str
     _template: Template
 
     @classmethod
@@ -43,6 +44,9 @@ class Prompt:
         return cls(
             version=version,
             system=(directory / "system.md").read_text(),
+            rag_addendum=(directory / "rag.md").read_text()
+            if (directory / "rag.md").exists()
+            else "",
             _template=env.get_template("user.md.j2"),
         )
 
