@@ -48,7 +48,7 @@ def test_retries_then_succeeds(monkeypatch):
     calls = {"n": 0}
     real = agent.run_sync
 
-    def flaky(prompt):
+    def flaky(prompt, deps=None):
         calls["n"] += 1
         if calls["n"] < 3:
             raise ModelHTTPError(status_code=429, model_name="x", headers={"retry-after": "1"})
@@ -56,7 +56,7 @@ def test_retries_then_succeeds(monkeypatch):
 
     monkeypatch.setattr(g.time, "sleep", lambda s: None)
     with patch.object(agent, "run_sync", flaky):
-        result = g.run_with_retries(agent, "prompt", max_attempts=4)
+        result = g.run_with_retries(agent, "prompt", max_attempts=4, deps=None)
     assert calls["n"] == 3
     assert isinstance(result.output, Guidance)
 
@@ -70,8 +70,8 @@ def test_non_retryable_error_is_raised_at_once():
 
     agent = Agent(TestModel(), output_type=Guidance)
 
-    def payment_required(prompt):
+    def payment_required(prompt, deps=None):
         raise ModelHTTPError(status_code=402, model_name="x")
 
     with patch.object(agent, "run_sync", payment_required), pytest.raises(ModelHTTPError):
-        g.run_with_retries(agent, "prompt", max_attempts=4)
+        g.run_with_retries(agent, "prompt", max_attempts=4, deps=None)

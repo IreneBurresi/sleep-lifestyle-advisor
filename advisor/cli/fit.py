@@ -125,7 +125,11 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     raw = pd.read_csv(args.data)
 
-    pipeline = build_pipeline().fit(raw)
+    try:
+        pipeline = build_pipeline().fit(raw)
+    except ValueError as e:  # a value clean() does not know
+        logger.error("%s", e)
+        return 1
     labels = pd.Series(pipeline["kmeans"].labels_, index=raw.index, name="cluster")
 
     sizes = labels.value_counts().to_dict()

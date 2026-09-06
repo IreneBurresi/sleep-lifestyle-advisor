@@ -54,7 +54,8 @@ def test_guidance_rejects_markup_and_wrong_counts():
 
 def test_saved_runs_still_load_as_records():
     # runs made before the markup validator existed are kept as evidence and skipped here
-    paths = [p for p in Path("eval/runs").rglob("*.json") if "novalidator" not in p.name]
+    runs = Path(__file__).parents[1] / "eval" / "runs"
+    paths = [p for p in runs.rglob("*.json") if "novalidator" not in p.name]
     assert paths
     for path in paths:
         for item in json.loads(path.read_text()):

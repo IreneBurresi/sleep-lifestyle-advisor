@@ -10,8 +10,10 @@ The generic key is copied into the provider's own variable, so pydantic-ai's mod
 """
 
 import os
+from typing import Self
 
-from pydantic import SecretStr
+from pydantic import SecretStr, ValidationError
+from pydantic_ai import ModelSettings
 from pydantic_ai.models import Model, infer_model
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -36,22 +38,39 @@ class LLMSettings(BaseSettings):
     pause_seconds: float = 4  # between consecutive calls; free tiers cap requests per minute
     reasoning: bool = False
 
+    @classmethod
+    def load(cls) -> Self:
+        """From the environment and `.env`; a missing variable is a ValueError with the fix."""
+        try:
+            return cls()  # type: ignore[call-arg]  # the required fields come from the environment
+        except ValidationError as e:
+            raise ValueError(
+                "Set LLM_PROVIDER, LLM_MODEL and LLM_API_KEY in .env (see .env.example)."
+            ) from e
+
     @property
     def name(self) -> str:
         return f"{self.provider}:{self.model}"
 
-    def provider_settings(self) -> dict:
-        """Whether the model thinks before answering, in each provider's own setting."""
+    def model_settings(self, temperature: float, max_tokens: int) -> ModelSettings:
+        """Sampling, timeout and whether the model thinks first, in the provider's own keys."""
+        settings: dict = {
+            "temperature": temperature,
+            "max_tokens": max_tokens,
+            "timeout": self.timeout_seconds,
+        }
         if self.provider == "openrouter":
-            return {"openrouter_reasoning": {"enabled": self.reasoning}}
-        if self.provider == "google" and not self.reasoning and "lite" not in self.model:
-            return {"google_thinking_config": {"thinking_budget": 0}}  # lite models reject it
-        return {}
+            settings["openrouter_reasoning"] = {"enabled": self.reasoning}
+        elif self.provider == "google" and "lite" not in self.model:  # lite rejects the config
+            settings["google_thinking_config"] = (
+                {"include_thoughts": True} if self.reasoning else {"thinking_budget": 0}
+            )
+        return ModelSettings(**settings)  # type: ignore[typeddict-item]  # provider keys
 
     def build_model(self) -> Model:
         variable = API_KEY_VARIABLE.get(self.provider)
         if variable is None:
-            raise SystemExit(
+            raise ValueError(
                 f"LLM_PROVIDER={self.provider!r} is not in advisor/config.py. "
                 f"Known: {', '.join(API_KEY_VARIABLE)}."
             )

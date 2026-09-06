@@ -4,7 +4,7 @@ prompts/v1/system.md     instructions, plain text
 prompts/v1/user.md.j2    the user message, a Jinja template rendered from an Assignment
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Self
 
@@ -24,7 +24,7 @@ class Prompt:
     version: str
     system: str
     rag_addendum: str
-    _template: Template
+    _template: Template = field(repr=False, compare=False)
 
     @classmethod
     def load(cls, version: str) -> Self:

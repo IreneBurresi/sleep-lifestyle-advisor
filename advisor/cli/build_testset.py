@@ -90,7 +90,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         cases = pick(pd.read_csv(args.data), Artifacts.load())
-    except FileNotFoundError as e:
+    except (FileNotFoundError, ValueError) as e:  # a row the models reject
         print(e, file=sys.stderr)
         return 1
     args.out.parent.mkdir(exist_ok=True)
