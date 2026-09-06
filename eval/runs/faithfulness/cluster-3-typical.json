@@ -1,0 +1,97 @@
+[
+  {
+    "case": "cluster-3-typical",
+    "cluster": 3,
+    "user": {
+      "age": 58,
+      "sleep_duration": 8.0,
+      "quality_of_sleep": 9,
+      "physical_activity_level": 75,
+      "daily_steps": 7000,
+      "stress_level": 3,
+      "heart_rate": 68,
+      "systolic": 140,
+      "diastolic": 95,
+      "bmi_category": "Overweight",
+      "sleep_disorder": "Sleep Apnea",
+      "gender": "Female",
+      "occupation": "Nurse"
+    },
+    "referral_reasons": [
+      "reports sleep apnea",
+      "blood pressure 140/95"
+    ],
+    "guidance": {
+      "summary": "You are older than your group with higher sleep duration, better sleep quality, and greater physical activity levels while maintaining low stress. However, your blood pressure reading of 140/95 and your reported sleep apnea are important areas for a professional to evaluate.",
+      "recommendations": [
+        "Build on your higher than average physical activity by aiming for the level where the U.S. activity guidelines suggest substantial health benefits, such as 150 minutes of moderate activity weekly.",
+        "Maintain your strong sleep duration and quality by sticking to a consistent sleep schedule where you go to bed and wake up at the same time each day, as recommended in the NIH guide to healthy sleep.",
+        "Since your blood pressure measures 140/95 and you report sleep apnea, share these specific readings with a professional for proper evaluation and guidance."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "physical activity guidelines adults moderate intensity aerobic activity minutes per week",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 68",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 109",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 57"
+        ],
+        "passages": [
+          {
+            "source": "Physical Activity Guidelines for Americans, 2nd edition, p. 68",
+            "heading": "These guidelines are the same for adults and older adults:",
+            "text": "- Adults should move more and sit less throughout the day. Some physical activity is better than none. Adults who sit less and do any amount of moderate-to-vigorous physical activity gain some health benefits. - For substantial health benefits, adults should do at least 150 minutes (2 hours and 30 minutes) to 300 minutes (5 hours) a week of moderate-intensity, or 75 minutes (1 hour and 15 minutes) to 150 minutes (2 hours and 30 minutes) a week of vigorous-intensity aerobic physical activity, or an equivalent combination of moderate- and vigorous-intensity aerobic activity. Preferably, aerobic activity should be spread throughout the week. - Additional health benefits are gained by engaging i"
+          },
+          {
+            "source": "Physical Activity Guidelines for Americans, 2nd edition, p. 109",
+            "heading": "Using Minutes of Moderate- and Vigorous-Intensity Activity to Reach a Goal",
+            "text": "People can meet the key guidelines by doing either moderate- or vigorous-intensity physical activity or a combination of both. A simple rule of thumb is that 1 minute of vigorous-intensity activity counts the same as 2 minutes of moderate-intensity activity. The lower limit of vigorous-intensity physical activity (6.0 METs) is twice the lower limit of moderate-intensity activity (3.0 METs). Therefore, 75 minutes of vigorous-intensity activity a week is roughly equivalent to 150 minutes of moderate-intensity activity a week. The recommendation that adults do 150 to 300 minutes of moderate-intensity physical activity or 75 to 150 minutes of vigorous-intensity physical activity are both equival"
+          },
+          {
+            "source": "Physical Activity Guidelines for Americans, 2nd edition, p. 57",
+            "heading": "How Much Total Activity a Week?",
+            "text": "When adults do the equivalent of at least 150 minutes of moderate-intensity aerobic activity each week, the benefits are substantial. These benefits include lower risk of all-cause mortality, coronary heart disease, stroke, hypertension, type 2 diabetes, some cancers, anxiety, depression, and Alzheimer\u2019s disease and other dementias. Physically active adults also sleep better, have improved cognition, and have better quality of life. As a person moves from 150 minutes a week toward 300 minutes a week, the health benefits become more extensive. For example, a person who does 300 minutes a week has an even lower risk of heart disease or type 2 diabetes than a person who does 150 minutes a week."
+          }
+        ]
+      },
+      {
+        "query": "healthy sleep habits tips NIH maintaining a sleep schedule room environment",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 33",
+          "Your Guide to Healthy Sleep, p. 34",
+          "Your Guide to Healthy Sleep, p. 28"
+        ],
+        "passages": [
+          {
+            "source": "Your Guide to Healthy Sleep, p. 33",
+            "heading": "Tips for Getting a Good Night\u2019s Sleep",
+            "text": "- l **Stick to a sleep schedule.** Go to bed and wake up at the same time each day. As creatures of habit, people have a hard time adjusting to changes in sleep patterns. Sleeping later on weekends won\u2019t fully make up for a lack of sleep during the week and will make it harder to wake up early on Monday morning. - l **Exercise is great, but not too late in the day.** Try to exercise at least 30 minutes on most days but not later than 2\u20133 hours before your bedtime. - l **Avoid caffeine and nicotine.** Coffee, colas, certain teas, and chocolate contain the stimulant caffeine, and its effects can take as long as 8 hours to wear off fully. Therefore, a cup of coffee in the late afternoon can mak"
+          },
+          {
+            "source": "Your Guide to Healthy Sleep, p. 34",
+            "heading": "Tips for Getting a Good Night\u2019s Sleep (continued)",
+            "text": "- l **Don\u2019t take naps after 3 p.m.** Naps can help make up for lost sleep, but late afternoon naps can make it harder to fall asleep at night. - l **Relax before bed.** Don\u2019t overschedule your day so that no time is left for unwinding. A relaxing activity, such as reading or listening to music, should be part of your bedtime ritual. - l **Take a hot bath before bed.** The drop in body temperature after getting out of the bath may help you feel sleepy, and the bath can help you relax and slow down so you\u2019re more ready to sleep. - l **Have a good sleeping environment.** Get rid of anything in your bedroom that might distract you from sleep, such as noises, bright lights, an uncomfortable bed, "
+          },
+          {
+            "source": "Your Guide to Healthy Sleep, p. 28",
+            "heading": "Top 10 Sleep Myths",
+            "text": "**Myth 1: Sleep is a time when your body and brain shut down for rest and relaxation.** No evidence shows that any major organ (including the brain) or regulatory system in the body shuts down during sleep. Some physiological processes actually become more active while you sleep. For example, secretion of certain hormones is boosted, and activity of the pathways in the brain linked to learning and memory increases. **Myth 2: Getting just 1 hour less sleep per night than needed will not have any effect on your daytime functioning.** This lack of sleep may not make you noticeably sleepy during the day. But even slightly less sleep can affect your ability to think properly and respond quickly, "
+          }
+        ]
+      },
+      {
+        "query": "NIH healthy sleep habits bedroom temperature darkness noise quiet",
+        "results": [],
+        "passages": []
+      }
+    ],
+    "latency_seconds": 4.18,
+    "input_tokens": 8817,
+    "output_tokens": 267
+  }
+]

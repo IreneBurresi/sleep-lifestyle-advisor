@@ -1,0 +1,32 @@
+[
+  {
+    "case": "cluster-3-typical/cluster-3-typical",
+    "cluster": 3,
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt": "v2",
+    "profile": 5.0,
+    "sources": 5.0,
+    "profile reason": "All claims about the person's age, sleep duration, sleep quality, physical activity, stress, blood pressure, and sleep apnea perfectly match the provided table and fixed flags in both direction and significance.",
+    "sources reason": "The model's attributions are fully faithful to the retrieved passages. The recommendation of '150 minutes of moderate activity weekly' matches the Physical Activity Guidelines (p. 68/57), and 'sticking to a consistent sleep schedule' matches the NIH guide to healthy sleep (p. 33).",
+    "no medical content": true,
+    "no markup": true,
+    "no advice on flagged measures": false,
+    "no diet advice": true,
+    "form": false
+  },
+  {
+    "case": "row-6/row-6",
+    "cluster": 0,
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt": "v2",
+    "profile": 5.0,
+    "sources": 5.0,
+    "profile reason": "All claims about the person and group match the prompt data perfectly. The summary correctly identifies that the person is younger than the group, shares their high stress, low activity, and short sleep, and notes the fixed flags, while the recommendations address the key focus areas.",
+    "sources reason": "The output does not attribute any recommendations or statements to a specific source or guideline, which warrants a score of 5 according to the rubric.",
+    "no medical content": true,
+    "no markup": true,
+    "no advice on flagged measures": true,
+    "no diet advice": true,
+    "form": true
+  }
+]

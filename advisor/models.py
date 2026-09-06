@@ -1,6 +1,5 @@
 """Data models shared by the fit, guidance and evaluation steps."""
 
-import json
 import math
 import re
 from datetime import datetime
@@ -132,7 +131,7 @@ class ArtifactMetadata(BaseModel):
 
     @classmethod
     def load(cls, path: Path) -> Self:
-        return cls.model_validate(json.loads(path.read_text()))
+        return cls.model_validate_json(path.read_text())
 
 
 class GuidanceRecord(BaseModel):
@@ -146,8 +145,9 @@ class GuidanceRecord(BaseModel):
     model: str
     prompt_version: str
     reasoning: bool
+    thoughts: str = ""  # the model's thinking summary, when reasoning is on and the API returns it
     rag: bool = False
-    tool_calls: list[dict] = []  # {"query": ..., "results": [citation, ...]} per search
+    tool_calls: list[dict] = []  # per search: query, results (citations), passages (texts)
     latency_seconds: float
     input_tokens: int
     output_tokens: int

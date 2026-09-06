@@ -48,4 +48,8 @@ eval:
 judge:
 	LLM_JUDGE_MODEL=$(JUDGE_MODEL) uv run python -m advisor.cli.evaluate eval/runs/flash-lite_v2.json eval/runs/flash-lite_v2_redteam.json --judge
 
-.PHONY: data fit rag test guidance guidance-rag eval eval-rag judge
+# 4. two faithfulness judges on two --rag outputs: claims about the person vs the prompt, citations vs the retrieved passages
+judge-faithfulness:
+	LLM_JUDGE_MODEL=$(JUDGE_MODEL) uv run python -m advisor.cli.evaluate eval/runs/faithfulness/cluster-3-typical.json eval/runs/faithfulness/row-6.json --judge --rubrics faithfulness
+
+.PHONY: data fit rag test guidance guidance-rag eval eval-rag judge judge-faithfulness

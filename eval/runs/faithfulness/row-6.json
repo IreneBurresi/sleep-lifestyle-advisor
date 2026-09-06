@@ -1,0 +1,93 @@
+[
+  {
+    "case": "row-6",
+    "cluster": 0,
+    "user": {
+      "age": 29,
+      "sleep_duration": 6.3,
+      "quality_of_sleep": 6,
+      "physical_activity_level": 40,
+      "daily_steps": 3500,
+      "stress_level": 7,
+      "heart_rate": 82,
+      "systolic": 140,
+      "diastolic": 90,
+      "bmi_category": "Obese",
+      "sleep_disorder": "Insomnia",
+      "gender": "Male",
+      "occupation": "Teacher"
+    },
+    "referral_reasons": [
+      "reports insomnia",
+      "blood pressure 140/90"
+    ],
+    "guidance": {
+      "summary": "You are younger than most people in this data, but you share the high stress, low activity, and short sleep duration common in your group. Medical professionals will also want to look closely at your reported insomnia and elevated blood pressure readings.",
+      "recommendations": [
+        "Add a short ten-minute walk after lunch each day to build on your current 3500 daily steps.",
+        "Set a consistent wake-up time every morning, including weekends, to support your sleep duration.",
+        "Wind down without screens for thirty minutes before bed to help lower your high stress levels.",
+        "Try taking slow, deep breaths for five minutes each afternoon to help manage your stress."
+      ]
+    },
+    "model": "google:gemini-3.5-flash-lite",
+    "prompt_version": "v2",
+    "reasoning": false,
+    "rag": true,
+    "tool_calls": [
+      {
+        "query": "increase daily steps walking goals sedentary adults physical activity guidelines",
+        "results": [
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 112",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+          "Physical Activity Guidelines for Americans, 2nd edition, p. 111"
+        ],
+        "passages": [
+          {
+            "source": "Physical Activity Guidelines for Americans, 2nd edition, p. 112",
+            "heading": "Monitoring Physical Activity With Steps",
+            "text": "People generally need to plan episodes of walking if they want to use step goals to progress toward meeting key guidelines. As a basis for setting step goals, it is preferable that people know how many steps they take per minute of a brisk walk. A person with a lower fitness level, who takes fewer steps per minute than a fit adult, will need fewer steps to achieve the same time of walking. One way to set a step goal is the following: 1. To determine one\u2019s usual daily steps, a person uses a pedometer or fitness tracker to count the number of steps taken on several ordinary days with no episodes of walking for exercise. Suppose the average is about 5,000 steps a day. (Most of those steps are l"
+          },
+          {
+            "source": "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+            "heading": "Monitoring Physical Activity With Steps",
+            "text": "Most of the technological approaches for measuring step counts used within research have provided total step counts for all physical activity over a day. The baseline number of steps per day has varied across studies but the typical amount is about 5,000 steps a day. It is estimated that 80 percent of daily steps among less active people are light intensity. Most research studies designed to increase physical activity have focused on increasing both the amount and intensity of physical activity above basic movement from daily life activities. Studies that focus on steps often set targets of 10,000 steps a day or a percentage increase in steps a day to encourage people to increase their amoun"
+          },
+          {
+            "source": "Physical Activity Guidelines for Americans, 2nd edition, p. 111",
+            "heading": "Monitoring Physical Activity With Steps",
+            "text": "The key to using a step counter to monitor progress in meeting the key guidelines is to first set a time goal related to moderate- or vigorous-intensity physical activity (minutes per day of brisk walking or other types of ambulation) and then to calculate how many steps are needed each day to reach that goal. Figure A1-1 explains how to use a pedometer to track walking to achieve the key guidelines goal. **Appendix 1.** Physical Activity Behaviors: Intensity, Bouts, and Steps **111** Figure A1-1. Using a Pedometer or Fitness Tracker to Track Walking Walking is a popular and easy way to meet the key guidelines, and pedometers or step counters are a useful way to track progress. Popular advic"
+          }
+        ]
+      },
+      {
+        "query": "sleep hygiene tips healthy sleep guide nih",
+        "results": [
+          "Your Guide to Healthy Sleep, p. 28",
+          "Your Guide to Healthy Sleep, p. 8",
+          "Your Guide to Healthy Sleep, p. 33"
+        ],
+        "passages": [
+          {
+            "source": "Your Guide to Healthy Sleep, p. 28",
+            "heading": "Top 10 Sleep Myths",
+            "text": "**Myth 1: Sleep is a time when your body and brain shut down for rest and relaxation.** No evidence shows that any major organ (including the brain) or regulatory system in the body shuts down during sleep. Some physiological processes actually become more active while you sleep. For example, secretion of certain hormones is boosted, and activity of the pathways in the brain linked to learning and memory increases. **Myth 2: Getting just 1 hour less sleep per night than needed will not have any effect on your daytime functioning.** This lack of sleep may not make you noticeably sleepy during the day. But even slightly less sleep can affect your ability to think properly and respond quickly, "
+          },
+          {
+            "source": "Your Guide to Healthy Sleep, p. 8",
+            "heading": "Introduction",
+            "text": "Despite growing support for the idea that adequate sleep, like adequate nutrition and physical activity, is vital to our well-being, people are sleeping less. The nonstop \u201c24/7\u201d nature of the world today encourages longer or nighttime work hours and offers continual access to entertainment and other activities. To keep up, people cut back on sleep. A common myth is that people can learn to get by on little sleep (such as less than 6 hours a night) with no adverse effects. Research suggests, however, that adults need at least 7\u20138 hours of sleep each night to be well rested. Indeed, in 1910, most people slept 9 hours a night. But recent surveys show the average adult now sleeps fewer than 7 ho"
+          },
+          {
+            "source": "Your Guide to Healthy Sleep, p. 33",
+            "heading": "Tips for Getting a Good Night\u2019s Sleep",
+            "text": "- l **Stick to a sleep schedule.** Go to bed and wake up at the same time each day. As creatures of habit, people have a hard time adjusting to changes in sleep patterns. Sleeping later on weekends won\u2019t fully make up for a lack of sleep during the week and will make it harder to wake up early on Monday morning. - l **Exercise is great, but not too late in the day.** Try to exercise at least 30 minutes on most days but not later than 2\u20133 hours before your bedtime. - l **Avoid caffeine and nicotine.** Coffee, colas, certain teas, and chocolate contain the stimulant caffeine, and its effects can take as long as 8 hours to wear off fully. Therefore, a cup of coffee in the late afternoon can mak"
+          }
+        ]
+      }
+    ],
+    "latency_seconds": 3.51,
+    "input_tokens": 5870,
+    "output_tokens": 203
+  }
+]

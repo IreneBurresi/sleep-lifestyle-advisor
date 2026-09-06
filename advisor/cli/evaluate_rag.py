@@ -15,7 +15,6 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from pydantic import ValidationError
 from pydantic_evals import Case, Dataset
 from pydantic_evals.evaluators import Evaluator, EvaluatorContext
 
@@ -53,24 +52,25 @@ def retrieval(index: Index, questions: list[dict]) -> None:
     report.print(include_averages=True)
 
 
+def names_source(record: GuidanceRecord) -> bool:
+    return re.search(SOURCE_WORDS, " ".join(record.guidance.recommendations), re.I) is not None
+
+
 def trajectory(records: list[GuidanceRecord]) -> None:
     for r in records:
-        searches = len(r.tool_calls)
-        empty = sum(not c["results"] for c in r.tool_calls)
-        names_source = bool(re.search(SOURCE_WORDS, " ".join(r.guidance.recommendations), re.I))
         logger.info(
             "case=%s searches=%d empty=%d names_source=%s queries=%s",
             r.case,
-            searches,
-            empty,
-            names_source,
+            len(r.tool_calls),
+            sum(not c["results"] for c in r.tool_calls),
+            names_source(r),
             [c["query"] for c in r.tool_calls],
         )
     n = len(records)
     print(
         f"\n{n} cases: searched in {sum(bool(r.tool_calls) for r in records)}, "
         f"mean searches {sum(len(r.tool_calls) for r in records) / n:.1f}, "
-        f"named a source in {sum(bool(re.search(SOURCE_WORDS, ' '.join(r.guidance.recommendations), re.I)) for r in records)}"
+        f"named a source in {sum(names_source(r) for r in records)}"
     )
 
 
@@ -81,13 +81,15 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     configure()
     try:
-        settings = LLMSettings()  # type: ignore[call-arg]
+        settings = LLMSettings.load()
         index = Index(settings.api_key.get_secret_value())
-    except (FileNotFoundError, ValidationError) as e:
+    except (FileNotFoundError, ValueError) as e:
         print(e, file=sys.stderr)
         return 1
     questions = json.loads(args.questions.read_text())
-    assert all(q["source"] in SOURCES for q in questions)
+    if unknown := [q["source"] for q in questions if q["source"] not in SOURCES]:
+        print(f"unknown sources in {args.questions}: {unknown}", file=sys.stderr)
+        return 1
     retrieval(index, questions)
     if args.run:
         trajectory([GuidanceRecord.model_validate(r) for r in json.loads(args.run.read_text())])

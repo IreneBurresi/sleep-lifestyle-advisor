@@ -17,13 +17,13 @@ import argparse
 import json
 import sys
 import time
+from dataclasses import dataclass
 from pathlib import Path
 
 import pandas as pd
-from pydantic import ValidationError
-from pydantic_ai import Agent, ModelSettings, UnexpectedModelBehavior
+from pydantic_ai import Agent, RunContext, UnexpectedModelBehavior
 from pydantic_ai.exceptions import ModelAPIError
-from pydantic_ai.messages import ModelMessage, ToolCallPart, ToolReturnPart
+from pydantic_ai.messages import ModelMessage, ThinkingPart, ToolCallPart, ToolReturnPart
 
 from advisor.cli.fit import K
 from advisor.config import LLMSettings
@@ -32,54 +32,61 @@ from advisor.log import configure, logger
 from advisor.models import Guidance, GuidanceRecord, UserInput
 from advisor.profiling import Artifacts, Assignment, assign
 from advisor.prompting import Prompt, available_versions
-from advisor.rag import Index
+from advisor.rag import Chunk, Index
 
 DEFAULT_PROMPT_VERSION = "v2"
-MAX_SEARCHES = 2  # per user; the search budget is reset by building a new agent per run
+MAX_SEARCHES = 2  # per user, see Searches
 PASSAGE_CHARS = 700
 
 
+@dataclass
+class Searches:
+    """The search tool's state for one run: the index and how many searches are left.
+    Passed as deps, so every user starts with a full budget on the same agent."""
+
+    index: Index | None = None  # None when the tool is off
+    left: int = MAX_SEARCHES
+
+
+def passage(chunk: Chunk) -> dict[str, str]:
+    return {"source": chunk.cite(), "heading": chunk.heading, "text": chunk.text[:PASSAGE_CHARS]}
+
+
 def make_agent(
-    settings: LLMSettings, prompt: Prompt, index: Index | None = None
-) -> Agent[None, Guidance]:
-    agent: Agent[None, Guidance] = Agent(
+    settings: LLMSettings, prompt: Prompt, rag: bool = False
+) -> Agent[Searches, Guidance]:
+    agent: Agent[Searches, Guidance] = Agent(
         settings.build_model(),
         name="guidance_agent",
+        deps_type=Searches,
         output_type=Guidance,
-        instructions=prompt.system + (prompt.rag_addendum if index else ""),
+        instructions=prompt.system + (prompt.rag_addendum if rag else ""),
         retries=2,
-        model_settings=ModelSettings(
-            temperature=0.3,
-            max_tokens=1500,
-            timeout=settings.timeout_seconds,
-            **settings.provider_settings(),  # type: ignore[typeddict-item]
-        ),
+        model_settings=settings.model_settings(temperature=0.3, max_tokens=1500),
     )
-    if index:
-        searches = {"left": MAX_SEARCHES}
+    if rag:
 
-        @agent.tool_plain
-        def search_guidelines(question: str) -> list[dict[str, str]]:
+        @agent.tool
+        def search_guidelines(
+            ctx: RunContext[Searches], question: str
+        ) -> list[dict[str, str]] | str:
             """Search the reference guidelines on physical activity and sleep. Returns the three
             passages closest to the question, each with its source and page. At most two
             searches per user."""
-            if searches["left"] == 0:
-                return [
-                    {"source": "", "heading": "", "text": "No searches left; write the guidance."}
-                ]
-            searches["left"] -= 1
-            chunks = index.search(question, k=3)
+            searches = ctx.deps
+            if searches.index is None or searches.left == 0:
+                return "No searches left; write the guidance."
+            searches.left -= 1
+            chunks = searches.index.search(question, k=3)
             logger.info("search_guidelines(%r) -> %s", question, [c.cite() for c in chunks])
-            return [
-                {"source": c.cite(), "heading": c.heading, "text": c.text[:PASSAGE_CHARS]}
-                for c in chunks
-            ]
+            return [passage(c) for c in chunks]
 
     return agent
 
 
 def tool_calls(messages: list[ModelMessage]) -> list[dict]:
-    """The searches the model made, with what came back, from the run's message history."""
+    """The searches the model made and the passages that came back, from the run's message
+    history. `results` lists the citations, `passages` the full texts the model saw."""
     calls, returns = {}, {}
     for message in messages:
         for part in message.parts:
@@ -88,18 +95,25 @@ def tool_calls(messages: list[ModelMessage]) -> list[dict]:
             elif isinstance(part, ToolReturnPart):
                 content = part.content if isinstance(part.content, list) else []
                 returns[part.tool_call_id] = [
-                    r["source"] for r in content if isinstance(r, dict) and r.get("source")
+                    r for r in content if isinstance(r, dict) and r.get("source")
                 ]
-    return [{"query": q, "results": returns.get(i, [])} for i, q in calls.items()]
+    return [
+        {
+            "query": q,
+            "results": [r["source"] for r in returns.get(i, [])],
+            "passages": returns.get(i, []),
+        }
+        for i, q in calls.items()
+    ]
 
 
 def generate(
-    agent: Agent[None, Guidance],
+    agent: Agent[Searches, Guidance],
     prompt: Prompt,
     assignment: Assignment,
     settings: LLMSettings,
     case: str,
-    rag: bool = False,
+    index: Index | None = None,
 ) -> GuidanceRecord:
     logger.info(
         "case=%s cluster=%d model=%s prompt=%s",
@@ -109,9 +123,14 @@ def generate(
         prompt.version,
     )
     started = time.perf_counter()
-    result = run_with_retries(agent, prompt.render(assignment), settings.max_attempts)
+    result = run_with_retries(
+        agent, prompt.render(assignment), settings.max_attempts, deps=Searches(index)
+    )
     latency = time.perf_counter() - started
     calls = tool_calls(result.all_messages())
+    thoughts = "\n".join(
+        p.content for m in result.all_messages() for p in m.parts if isinstance(p, ThinkingPart)
+    )
     logger.info(
         "case=%s done latency=%.2fs in=%d out=%d referral=%s searches=%d",
         case,
@@ -130,7 +149,8 @@ def generate(
         model=settings.name,
         prompt_version=prompt.version,
         reasoning=settings.reasoning,
-        rag=rag,
+        thoughts=thoughts,
+        rag=index is not None,
         tool_calls=calls,
         latency_seconds=round(latency, 2),
         input_tokens=result.usage.input_tokens,
@@ -148,6 +168,8 @@ def print_record(record: GuidanceRecord) -> None:
         print(f"Talk to a professional about: {'; '.join(record.referral_reasons)}")
     for call in record.tool_calls:
         print(f"[searched: {call['query']} -> {'; '.join(call['results'])}]")
+    if record.thoughts:
+        print(f"[thought: {record.thoughts[:200]!r}...]")
     print(
         f"[{record.model} | prompt {record.prompt_version} | {record.latency_seconds}s | "
         f"{record.input_tokens} in / {record.output_tokens} out]"
@@ -208,7 +230,7 @@ def main(argv: list[str] | None = None) -> int:
         artifacts = Artifacts.load()
         prompt = Prompt.load(args.prompt_version)
         users = select_users(args, artifacts)
-    except (FileNotFoundError, ValidationError) as e:
+    except (FileNotFoundError, ValueError) as e:  # pydantic's ValidationError is a ValueError
         print(e, file=sys.stderr)
         return 1
     assignments = [(label, assign(user, artifacts)) for label, user in users]
@@ -220,19 +242,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     try:
-        settings = LLMSettings()  # type: ignore[call-arg]  # values come from the environment
-    except ValidationError:
-        print(
-            "Set LLM_PROVIDER, LLM_MODEL and LLM_API_KEY in .env (see .env.example).",
-            file=sys.stderr,
-        )
-        return 1
-    try:
+        settings = LLMSettings.load()
         index = Index(settings.api_key.get_secret_value()) if args.rag else None
-    except FileNotFoundError as e:
+        agent = make_agent(settings, prompt, rag=args.rag)
+    except (FileNotFoundError, ValueError) as e:
         print(e, file=sys.stderr)
         return 1
-    agent = make_agent(settings, prompt, index)  # rebuilt per user below when the search tool is on
     logger.info(
         "%d users, model=%s prompt=%s reasoning=%s rag=%s",
         len(assignments),
@@ -246,10 +261,8 @@ def main(argv: list[str] | None = None) -> int:
     for label, assignment in assignments:
         if records:
             time.sleep(settings.pause_seconds)
-        if index:
-            agent = make_agent(settings, prompt, index)
         try:
-            record = generate(agent, prompt, assignment, settings, case=label, rag=args.rag)
+            record = generate(agent, prompt, assignment, settings, case=label, index=index)
         except (ModelAPIError, UnexpectedModelBehavior) as e:
             logger.error("case=%s failed %s: %s", label, type(e).__name__, str(e)[:200])
             continue

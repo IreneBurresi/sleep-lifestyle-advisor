@@ -8,8 +8,6 @@ without rebuilding. Needs the Gemini key in .env.
 
 import sys
 
-from pydantic import ValidationError
-
 from advisor.config import LLMSettings
 from advisor.log import configure, logger
 from advisor.rag import INDEX_DIR, build
@@ -18,14 +16,11 @@ from advisor.rag import INDEX_DIR, build
 def main() -> int:
     configure()
     try:
-        settings = LLMSettings()  # type: ignore[call-arg]
-    except ValidationError:
-        print(
-            "Set LLM_PROVIDER=google and LLM_API_KEY in .env: the index uses Gemini embeddings.",
-            file=sys.stderr,
-        )
+        settings = LLMSettings.load()
+        n = build(settings.api_key.get_secret_value())
+    except ValueError as e:  # missing settings, or a key the Gemini client rejects
+        print(f"{e} The index uses Gemini embeddings.", file=sys.stderr)
         return 1
-    n = build(settings.api_key.get_secret_value())
     logger.info("indexed %d chunks in %s", n, INDEX_DIR)
     return 0
 
