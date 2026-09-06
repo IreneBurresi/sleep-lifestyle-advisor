@@ -15,3 +15,9 @@ artifacts/
 
 # macos
 .DS_Store
+
+# editor
+.vscode/
+
+# agent skills, local only
+.agents/

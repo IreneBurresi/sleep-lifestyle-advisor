@@ -21,7 +21,7 @@ I keep the repeated rows in the fit. Two people can share the same coarse values
 
 Everything is standardised before KMeans. There is no outlier treatment: the values sit on a grid, so the extreme ones are rare levels, not errors. The columns are not reduced with PCA because each group has to be described in words later.
 
-Gender and Occupation are not features. Gender because the question is optional in an app, and because as a yes/no column it starts to split the groups by gender once there are more than five of them. Occupation because eleven yes/no columns take over the partition. Sleep Disorder is kept aside to check the groups. Details in `analysis/columns.ipynb`.
+Gender and Occupation are not features. Gender because the question is optional in an app, and because as a yes/no column it starts to split the groups by gender once there are more than five of them. Occupation because eleven yes/no columns take over the partition. Sleep Disorder is kept aside to check the groups. Details in `notebooks/analysis/columns.ipynb`.
 
 ## Choosing k
 
@@ -33,7 +33,7 @@ Stability does not either. The test: fit on a random 80% of the rows, use that f
 
 ![stability](../figures/stability.png)
 
-So k is a choice for use, not a number the scores give. k = 7 is k = 5 with two groups cut in two. I keep 5 because each group becomes a short written profile for the language model, and the silhouette has its first peak there. Details in `analysis/k.ipynb`.
+No score singles out a k. k = 7 is k = 5 with two groups cut in two. I keep 5 because each group becomes a short written profile for the language model, and the silhouette has its first peak there. Details in `notebooks/analysis/k.ipynb`.
 
 ## The five groups
 
@@ -45,7 +45,7 @@ So k is a choice for use, not a number the scores give. k = 7 is k = 5 with two 
 | 3 | 62 | Around 52, overweight or obese. Sleep well and report low stress, but blood pressure almost as high as cluster 4. 92% have a sleep disorder. | blood pressure and the disorder, which go to a professional; weight, through movement |
 | 4 | 32 | Around 50, overweight, the most active. Shortest sleep, highest stress, highest blood pressure. | stress and short sleep, recovery; blood pressure and heart rate go to a professional |
 
-The descriptions are read from the group means and from the crosstabs with BMI, sleep disorder and gender in `clustering.ipynb`. The last column is what the fit step writes as `focus` in `profiles.json`: the perimeter the prompt gives the language model, not advice. Two things to keep in mind: clusters 1 and 4 are 9 and 8 distinct rows repeated, and clusters 1, 3 and 4 are 100%, 97% and 100% women (see Limits).
+The descriptions are read from the group means and from the crosstabs with BMI, sleep disorder and gender in `notebooks/clustering.ipynb`. The last column is what the fit step writes as `focus` in `profiles.json`: the perimeter the prompt gives the language model, not advice. Clusters 1 and 4 are 9 and 8 distinct rows repeated, and clusters 1, 3 and 4 are 100%, 97% and 100% women (see Limits).
 
 ## Checks
 

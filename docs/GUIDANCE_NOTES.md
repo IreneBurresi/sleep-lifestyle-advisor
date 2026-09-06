@@ -12,7 +12,7 @@ Three labelled sections, rendered from a Jinja template:
 
 The output is a typed `Guidance`: a summary and three or four recommendations, validated by pydantic. A validator rejects text containing markup tags, which makes the model retry instead of shipping `</summary>` to a user. There is no generated disclaimer. When there is nothing to refer, nothing is printed; when there is, the line says what, and the model did not write it.
 
-Why individual data and not just the cluster: with the cluster profile alone there are five possible outputs, and a lookup table would do. The deltas are what makes two members of the same cluster get different text. The test set (`eval/testset.json`) checks this with one typical and two divergent members of cluster 0.
+Why the person's own data is in the prompt: with the cluster profile alone there are five possible outputs, and a lookup table would do. The deltas are what makes two members of the same cluster get different text. The test set (`eval/testset.json`) checks this with one typical and two divergent members of cluster 0.
 
 ## Model choice
 
@@ -31,16 +31,16 @@ The constraint was a free model with enough daily quota to run the evaluation mo
 
 Runs: `eval/runs/flash*`, `eval/runs/openrouter/`, smoke tests in `eval/runs/openrouter/smoke/`. Three cases per OpenRouter model except nemotron and minimax, which ran the full set.
 
-Flash-Lite won on quota and latency; the two Gemini models fail the automatic checks on the same single case, the referral written as a recommendation for cluster 3. OpenRouter's free tier is a shared pool capped at 50 requests a day per account, and two of the four models there never answered a full set. For the judges, Flash: larger than Lite, and a different model from the one that wrote the text.
+Flash-Lite won on quota and latency; the two Gemini models fail the automatic checks on the same single case, the referral written as a recommendation for cluster 3. OpenRouter's free tier is a shared pool capped at 50 requests a day per account, and two of the four models there never answered a full set. The judges run on Flash because it is larger than Lite and is not the model that wrote the text.
 
-Thinking, where a model has it, stays off: it multiplies output tokens by twenty and latency by ten for text that reads the same, and with `max_tokens` bounded it can spend the whole budget thinking and return nothing. Flash-Lite has no thinking control (the API rejects a thinking budget) and does not need one.
+Thinking, where a model has it, stays off: it multiplies output tokens by twenty and latency by ten for text that reads the same, and with `max_tokens` bounded it can spend the whole budget thinking and return nothing. `LLM_REASONING=true` turns it on; on Gemini the thinking summary comes back with the answer and is saved in the record (`thoughts`), which is the closest thing to seeing why the model chose a habit. The Flash case in the table above took 27 s; a second measurement on one case gave 11 s and 1754 thinking tokens against 1.9 s without thinking, for a recommendation that differs in wording only. Neither run is kept in `eval/runs/`. Flash-Lite has no thinking mode: the flag changes nothing there and the record has no thoughts.
 
 ### Trade-offs
 
 - **Cost**: Flash-Lite is free within the AI Studio quotas and priced in fractions of a cent per call beyond them; at 1100 tokens in and 140 out per call, 10k users a month are a few dollars on any small hosted model.
 - **Latency**: 1.2 s median. Fine for "generate my weekly guidance", and for an interactive screen too.
 - **Reliability**: the free tier caps requests per day and per minute. The script paces calls (`LLM_PAUSE_SECONDS`) and retries with exponential backoff (5, 15, 45 s), honouring `Retry-After`. Cases that still fail are reported, not silently dropped. A production setting would pay for the same model to remove the caps.
-- **Quality**: follows the rules with one recurring exception, discussed in `EVAL_NOTES.md`: for the cluster where both flags fire, it tells the user to get their blood pressure checked, which the prompt forbids as advice. Terse: three recommendations in 9 cases of 9.
+- **Quality**: follows the rules with one recurring exception, discussed in `EVAL_NOTES.md`: for the cluster where both flags fire, it tells the user to get their blood pressure checked, which the prompt forbids as advice. The output is terse: three recommendations, never four, in the nine test cases.
 - **Safety**: the safety-relevant decisions are in code (referral thresholds, forbidden topics in the prompt, output schema, markup rejection). The model's freedom is in the wording of habit advice.
 - **Structured output**: pydantic-ai uses tool-call mode by default with Gemini (the model also supports JSON-schema output, not used here). Validation retries show up as roughly doubled input tokens on the affected call (one in the v1 run).
 
@@ -52,12 +52,12 @@ With `--rag` the agent gets a `search_guidelines` tool, at most two searches per
 
 Retrieval itself works: on five questions with a known answer (`eval/rag_questions.json`) the expected source and the expected fact are in the top three passages 5 times out of 5. The model uses the tool on every case, spends both searches, and tries a third time in 7 cases out of 14; every output names a source, most often "the U.S. activity guidelines suggest at least 150 minutes of moderate activity per week".
 
-What it costs and what it changes, same 14 cases, same judges (`EVAL_NOTES.md`):
+What it costs and what it changes, on the same 14 cases with the same checks and judges (`EVAL_NOTES.md`):
 
 | | without RAG | with RAG |
 |---|---|---|
-| median latency | 1.2 s | 3.9 s |
-| tokens in / out (mean) | 1136 / 137 | 7262 / 229 |
+| median latency | 1.2 s | 3.6 s |
+| tokens in / out (mean) | 1148 / 141 | 7123 / 227 |
 | keyword checks passed | 97.1% | 92.9% |
 | judge: relevance / safety / actionability / tone | 4.9 / 4.7 / 4.6 / 4.9 | 4.6 / 4.7 / 4.8 / 5.0 |
 
@@ -91,6 +91,6 @@ Summaries lead with the reading: "You are typical of your group" for the typical
 
 Left over: cluster 3 still gets "Schedule a routine check with a healthcare professional to review your blood pressure and sleep apnea" as a recommendation. It is the case where both flags fire and the group's focus names blood pressure; the model repeats the referral, once in the summary and once as a recommendation. The keyword check catches it every time, and the LLM judge scores it 3 on safety once the rubric names that case. Two summaries use evaluative words the rules did not list ("healthy baselines", "maintain great health"). The evaluation notes pick these up.
 
-### The flag that moved out of the model
+### The referral field removed from the output
 
 An earlier draft asked the model to set a `talk_to_a_professional` field and the code overrode it when the model got it wrong. The field is gone: referral is computed before the call, printed after it, and the prompt only says what not to talk about.
