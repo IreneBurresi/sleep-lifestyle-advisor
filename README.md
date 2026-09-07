@@ -12,7 +12,7 @@ to generate personalised guidance with an LLM.
 
 ```bash
 uv sync            # installs the project and the dev tools
-make test          # 40 tests, no network: everything below is ready to run
+make test          # 39 tests pass offline; the one skipped needs the guideline PDFs
 ```
 
 The dataset and the fitted model are committed, so nothing has to be downloaded or trained
@@ -109,6 +109,8 @@ advisor/rubrics/    one directory per judge rubric version, one file per dimensi
 docs/               the documents listed above
 notebooks/          EDA, features, clustering; analysis/ for the checks behind k and the columns
 eval/               testset.json, red_team.json, rag_questions.json; runs/ (saved outputs), results/ (checks, judge scores, human ratings)
+data/raw/           the dataset; make data downloads it again
+artifacts/          the fitted pipeline, the cluster profiles and the fit metadata
 rag/index/          the committed retrieval index
 figures/            plots used by the notes
 tests/              offline, no model calls
