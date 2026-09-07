@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-09-05T13:13:22+00:00",
+  "dataset": {
+    "path": "data/raw/sleep_health.csv",
+    "sha256": "1efe7b6f781ff88078d08d81fe136cff98b1b0c32560f35f8650ca5984b77841",
+    "rows": 374
+  },
+  "model": {
+    "k": 5,
+    "n_init": 200,
+    "random_state": 42,
+    "features": [
+      "Age",
+      "Sleep Duration",
+      "Quality of Sleep",
+      "Activity Index",
+      "Stress Level",
+      "Heart Rate",
+      "Mean Arterial Pressure",
+      "BMI"
+    ],
+    "inertia": 886.2,
+    "silhouette": 0.522
+  },
+  "versions": {
+    "python": "3.12.12",
+    "scikit-learn": "1.9.0"
+  }
+}

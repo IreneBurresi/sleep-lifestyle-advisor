@@ -12,8 +12,15 @@ to generate personalised guidance with an LLM.
 
 ```bash
 uv sync            # installs the project and the dev tools
-make data          # downloads the CSV
-make fit           # needs the CSV; everything below needs the artifacts it writes
+make test          # 40 tests, no network: everything below is ready to run
+```
+
+The dataset and the fitted model are committed, so nothing has to be downloaded or trained
+before running the guidance and the evaluation. `make data` and `make fit` rebuild them:
+
+```bash
+make data          # downloads the CSV again (same file, same sha256)
+make fit           # refits the model and rewrites artifacts/
 ```
 
 Without uv: `pip install -r requirements.txt` in a Python 3.12 environment, then run the
@@ -31,8 +38,10 @@ targets call `uv run`). `pip install pytest` for the tests.
 | `profiles.json` | what each cluster looks like, plus population mean and std |
 | `metadata.json` | when it was fitted, sha256 of the data, versions |
 
-Neither data nor artifacts are committed. The guidance step loads the artifacts and
-does not retrain.
+These three files are committed, so the guidance step runs on a fresh clone; it loads them and
+does not retrain. Refitting is deterministic and overwrites them with the same content, except
+`created_at`. The two guideline PDFs behind `--rag` are not committed (17 MB); `rag/index/` holds
+what was built from them.
 
 ## Guidance
 

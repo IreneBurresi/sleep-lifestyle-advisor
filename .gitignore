@@ -6,9 +6,17 @@ __pycache__/
 .ruff_cache/
 .ty_cache/
 
-# data and artifacts (rag/index is committed on purpose)
-data/
-artifacts/
+# data and artifacts: the CC0 dataset and the fitted model are committed so that the
+# repository runs without a download and without a refit; the source PDFs are not (17 MB,
+# and rag/index holds what is built from them)
+data/*
+!data/raw/
+data/raw/*
+!data/raw/sleep_health.csv
+artifacts/*
+!artifacts/model.joblib
+!artifacts/profiles.json
+!artifacts/metadata.json
 
 # secrets
 .env

@@ -1,0 +1,257 @@
+{
+  "clusters": {
+    "0": {
+      "summary": "Late thirties. Short and poor sleep, high stress, the least active group. About half overweight.",
+      "focus": [
+        "sleep duration and sleep quality, both about one standard deviation below the population",
+        "stress, which goes with the short sleep",
+        "activity, the lowest of all groups"
+      ],
+      "size": 101,
+      "distinct_rows": 36,
+      "mean": {
+        "Age": 37.8,
+        "Sleep Duration": 6.3,
+        "Quality of Sleep": 6.0,
+        "Stress Level": 7.2,
+        "Physical Activity Level": 40.4,
+        "Daily Steps": 5504.0,
+        "Heart Rate": 73.8,
+        "Systolic": 128.5,
+        "Diastolic": 83.7
+      },
+      "deviation_from_population_sd": {
+        "Age": -0.51,
+        "Sleep Duration": -0.98,
+        "Quality of Sleep": -1.1,
+        "Stress Level": 1.0,
+        "Physical Activity Level": -0.9,
+        "Daily Steps": -0.81,
+        "Heart Rate": 0.89,
+        "Systolic": -0.0,
+        "Diastolic": -0.16
+      },
+      "share": {
+        "BMI Category": {
+          "Overweight": 0.54,
+          "Normal": 0.38,
+          "Obese": 0.08
+        },
+        "Sleep Disorder": {
+          "Insomnia": 0.45,
+          "No disorder": 0.43,
+          "Sleep Apnea": 0.13
+        },
+        "Gender": {
+          "Male": 0.8,
+          "Female": 0.2
+        }
+      }
+    },
+    "1": {
+      "summary": "Early fifties, normal BMI. Longest and best sleep, lowest stress, little activity.",
+      "focus": [
+        "physical activity, the one thing below average in an otherwise healthy group",
+        "keeping the good sleep and low stress while getting older"
+      ],
+      "size": 34,
+      "distinct_rows": 9,
+      "mean": {
+        "Age": 53.0,
+        "Sleep Duration": 8.4,
+        "Quality of Sleep": 9.0,
+        "Stress Level": 3.0,
+        "Physical Activity Level": 33.5,
+        "Daily Steps": 5294.1,
+        "Heart Rate": 65.0,
+        "Systolic": 124.6,
+        "Diastolic": 79.7
+      },
+      "deviation_from_population_sd": {
+        "Age": 1.24,
+        "Sleep Duration": 1.61,
+        "Quality of Sleep": 1.41,
+        "Stress Level": -1.34,
+        "Physical Activity Level": -1.23,
+        "Daily Steps": -0.94,
+        "Heart Rate": -1.25,
+        "Systolic": -0.51,
+        "Diastolic": -0.8
+      },
+      "share": {
+        "BMI Category": {
+          "Normal": 1.0
+        },
+        "Sleep Disorder": {
+          "No disorder": 0.97,
+          "Insomnia": 0.03
+        },
+        "Gender": {
+          "Female": 1.0
+        }
+      }
+    },
+    "2": {
+      "summary": "Late thirties, normal BMI. Sleep well, active, lowest blood pressure.",
+      "focus": [
+        "maintenance: sleep, stress, activity and blood pressure are all at or better than average",
+        "small refinements rather than changes"
+      ],
+      "size": 145,
+      "distinct_rows": 39,
+      "mean": {
+        "Age": 36.9,
+        "Sleep Duration": 7.5,
+        "Quality of Sleep": 7.8,
+        "Stress Level": 4.9,
+        "Physical Activity Level": 70.4,
+        "Daily Steps": 7566.9,
+        "Heart Rate": 68.9,
+        "Systolic": 123.0,
+        "Diastolic": 80.8
+      },
+      "deviation_from_population_sd": {
+        "Age": -0.6,
+        "Sleep Duration": 0.44,
+        "Quality of Sleep": 0.38,
+        "Stress Level": -0.26,
+        "Physical Activity Level": 0.54,
+        "Daily Steps": 0.46,
+        "Heart Rate": -0.3,
+        "Systolic": -0.71,
+        "Diastolic": -0.63
+      },
+      "share": {
+        "BMI Category": {
+          "Normal": 0.99,
+          "Overweight": 0.01
+        },
+        "Sleep Disorder": {
+          "No disorder": 0.94,
+          "Insomnia": 0.03,
+          "Sleep Apnea": 0.03
+        },
+        "Gender": {
+          "Male": 0.73,
+          "Female": 0.27
+        }
+      }
+    },
+    "3": {
+      "summary": "Around 52, overweight or obese. Sleep well and report low stress, but blood pressure almost as high as the most stressed group. Most have a sleep disorder.",
+      "focus": [
+        "blood pressure, more than one standard deviation above the population despite good habits",
+        "a sleep disorder in 92% of the group, mostly apnea: point to a professional, do not advise on it",
+        "weight, through movement rather than diet: almost everyone is overweight, and food advice is not given here"
+      ],
+      "size": 62,
+      "distinct_rows": 14,
+      "mean": {
+        "Age": 51.8,
+        "Sleep Duration": 7.4,
+        "Quality of Sleep": 8.1,
+        "Stress Level": 3.5,
+        "Physical Activity Level": 61.8,
+        "Daily Steps": 6393.5,
+        "Heart Rate": 67.4,
+        "Systolic": 137.8,
+        "Diastolic": 92.7
+      },
+      "deviation_from_population_sd": {
+        "Age": 1.11,
+        "Sleep Duration": 0.39,
+        "Quality of Sleep": 0.68,
+        "Stress Level": -1.04,
+        "Physical Activity Level": 0.12,
+        "Daily Steps": -0.26,
+        "Heart Rate": -0.67,
+        "Systolic": 1.19,
+        "Diastolic": 1.31
+      },
+      "share": {
+        "BMI Category": {
+          "Overweight": 0.97,
+          "Obese": 0.03
+        },
+        "Sleep Disorder": {
+          "Sleep Apnea": 0.52,
+          "Insomnia": 0.4,
+          "No disorder": 0.08
+        },
+        "Gender": {
+          "Female": 0.97,
+          "Male": 0.03
+        }
+      }
+    },
+    "4": {
+      "summary": "Around 50, overweight, the most active. Shortest sleep, highest stress, highest blood pressure.",
+      "focus": [
+        "stress and short sleep, the highest and lowest of all groups even though activity is the highest",
+        "blood pressure and heart rate, both high: point to a professional",
+        "recovery rather than more exercise"
+      ],
+      "size": 32,
+      "distinct_rows": 8,
+      "mean": {
+        "Age": 49.8,
+        "Sleep Duration": 6.1,
+        "Quality of Sleep": 6.0,
+        "Stress Level": 8.0,
+        "Physical Activity Level": 90.0,
+        "Daily Steps": 10000.0,
+        "Heart Rate": 75.0,
+        "Systolic": 140.0,
+        "Diastolic": 95.0
+      },
+      "deviation_from_population_sd": {
+        "Age": 0.87,
+        "Sleep Duration": -1.34,
+        "Quality of Sleep": -1.1,
+        "Stress Level": 1.47,
+        "Physical Activity Level": 1.48,
+        "Daily Steps": 1.97,
+        "Heart Rate": 1.17,
+        "Systolic": 1.48,
+        "Diastolic": 1.68
+      },
+      "share": {
+        "BMI Category": {
+          "Overweight": 1.0
+        },
+        "Sleep Disorder": {
+          "Sleep Apnea": 0.91,
+          "No disorder": 0.06,
+          "Insomnia": 0.03
+        },
+        "Gender": {
+          "Female": 1.0
+        }
+      }
+    }
+  },
+  "population": {
+    "mean": {
+      "Age": 42.18,
+      "Sleep Duration": 7.13,
+      "Quality of Sleep": 7.31,
+      "Stress Level": 5.39,
+      "Physical Activity Level": 59.17,
+      "Daily Steps": 6816.84,
+      "Heart Rate": 70.17,
+      "Systolic": 128.55,
+      "Diastolic": 84.65
+    },
+    "std": {
+      "Age": 8.67,
+      "Sleep Duration": 0.8,
+      "Quality of Sleep": 1.2,
+      "Stress Level": 1.77,
+      "Physical Activity Level": 20.83,
+      "Daily Steps": 1617.92,
+      "Heart Rate": 4.14,
+      "Systolic": 7.75,
+      "Diastolic": 6.16
+    }
+  }
+}
